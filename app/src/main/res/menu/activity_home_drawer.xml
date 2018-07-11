@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/menu_top">
+
+        <item
+            android:id="@+id/nav_favourite"
+            android:icon="@drawable/ic_favorite_black_24dp"
+            android:title="@string/favourite" />
+
+        <item
+            android:id="@+id/nav_movies"
+            android:icon="@drawable/ic_movie_black_24dp"
+            android:title="@string/movies" />
+        <item
+            android:id="@+id/nav_tvshow"
+            android:icon="@drawable/ic_tv_black_24dp"
+            android:title="@string/tv_show" />
+
+
+    </group>
+
+    <group android:id="@+id/menu_bottom" >
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="@string/setting" />
+    </group>
+
+
+
+
+
+
+
+</menu>
