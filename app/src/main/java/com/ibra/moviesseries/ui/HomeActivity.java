@@ -2,11 +2,15 @@ package com.ibra.moviesseries.ui;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
+
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,10 +23,20 @@ import android.view.MenuItem;
 
 import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.adapter.ViewPagerAdapter;
+import com.ibra.moviesseries.data.ApiClinet;
+import com.ibra.moviesseries.data.ApiInterface;
 import com.ibra.moviesseries.fragment.NowPlayingFragment;
 import com.ibra.moviesseries.fragment.PopularFragment;
 import com.ibra.moviesseries.fragment.TopRatedFragment;
 import com.ibra.moviesseries.fragment.UpcomingFragment;
+import com.ibra.moviesseries.model.Genre;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,6 +50,7 @@ public class HomeActivity extends AppCompatActivity
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
+    private ArrayList<Genre> genres = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +79,9 @@ public class HomeActivity extends AppCompatActivity
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),fragments,tabName);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
+
+
 
     }
 
