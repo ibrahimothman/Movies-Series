@@ -30,8 +30,20 @@ import retrofit2.Response;
 public class TopRatedFragment extends CatchData {
 
 
+    private static final String TAG = TopRatedFragment.class.getSimpleName();
+    private boolean loadOnce = true;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(savedInstanceState != null) Log.d(TAG,"not null");
+        else Log.d(TAG,"null");
+    }
+
+
     @Override
     protected Call<MovieList> getData() {
+        Log.d(TAG,"getdata");
         return ApiClinet.getApiClient().create(ApiInterface.class).getTopReatedMovies();
     }
 }

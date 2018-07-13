@@ -1,5 +1,7 @@
 package com.ibra.moviesseries.data;
 
+import android.util.Log;
+
 import com.ibra.moviesseries.model.Genre;
 
 import retrofit2.Retrofit;
@@ -13,6 +15,7 @@ public class ApiClinet {
 
     public static Retrofit getApiClient(){
         if(retrofit == null){
+            Log.d("fromApiClient","getApiClient");
             retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();

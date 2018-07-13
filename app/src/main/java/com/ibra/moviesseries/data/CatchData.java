@@ -18,6 +18,7 @@ import com.ibra.moviesseries.adapter.MovieAdapter;
 import com.ibra.moviesseries.model.Movie;
 import com.ibra.moviesseries.model.MovieList;
 
+import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,13 +58,22 @@ public abstract class CatchData extends Fragment {
         list.setHasFixedSize(true);
         list.setAdapter(movieAdapter);
 
+        if(movieList.isEmpty()) {
+            Log.d("fromCatchData","list is empty");
+            loadData();
+        }else Log.d("fromCatchData","list is not empty");
 
+        return row;
+    }
+
+    private void loadData() {
         Call<MovieList> call = getData();
         call.enqueue(new Callback<MovieList>() {
             @Override
             public void onResponse(@NonNull Call<MovieList> call, @NonNull Response<MovieList> response) {
                 if(response.body() != null) {
-                    movieAdapter.notifyAdapter(response.body().getMovieList());
+                    movieList = response.body().getMovieList();
+                    movieAdapter.notifyAdapter(movieList);
                 }
                 else Toast.makeText(getContext(), getString(R.string.error_message), Toast.LENGTH_LONG).show();;
 
@@ -74,7 +84,6 @@ public abstract class CatchData extends Fragment {
                 Log.d("fromApi",t.getLocalizedMessage());
             }
         });
-        return row;
     }
 
     protected abstract Call<MovieList> getData();
