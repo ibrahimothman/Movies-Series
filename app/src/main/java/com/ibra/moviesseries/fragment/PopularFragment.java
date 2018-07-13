@@ -9,15 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ibra.moviesseries.R;
+import com.ibra.moviesseries.data.ApiClinet;
+import com.ibra.moviesseries.data.ApiInterface;
+import com.ibra.moviesseries.data.CatchData;
+import com.ibra.moviesseries.model.MovieList;
 
-public class PopularFragment extends Fragment{
+import retrofit2.Call;
 
-    public PopularFragment() {
-    }
+public class PopularFragment extends CatchData{
 
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.list,container,false);
+    protected Call<MovieList> getData() {
+        return ApiClinet.getApiClient().create(ApiInterface.class).getPopularMovies();
     }
 }
