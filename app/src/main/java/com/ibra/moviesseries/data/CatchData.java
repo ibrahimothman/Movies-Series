@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.ibra.moviesseries.R;
@@ -34,6 +35,7 @@ public abstract class CatchData extends Fragment {
 
     RecyclerView list;
 
+    private ProgressBar progressBar;
 
 
     private MovieAdapter movieAdapter;
@@ -65,6 +67,9 @@ public abstract class CatchData extends Fragment {
         list.setLayoutManager(new GridLayoutManager(getContext(),3));
         list.setHasFixedSize(true);
 
+        // setup progress bar
+        progressBar = row.findViewById(R.id.progress_bar);
+
 
         loadData();
 
@@ -73,11 +78,13 @@ public abstract class CatchData extends Fragment {
     }
 
     private void loadData() {
+        progressBar.setVisibility(View.VISIBLE);
         Call call = getData();
         call.enqueue(new Callback() {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) {
                 if(response.body() != null){
+                    progressBar.setVisibility(View.INVISIBLE);
                     Object obj = response.body().getClass();
                     if(obj == MovieList.class){
                         list.setAdapter(movieAdapter);
