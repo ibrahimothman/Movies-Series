@@ -1,20 +1,19 @@
 package com.ibra.moviesseries.ui;
 
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-
+import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -24,44 +23,29 @@ import com.ibra.moviesseries.fragment.NowPlayingFragment;
 import com.ibra.moviesseries.fragment.PopularFragment;
 import com.ibra.moviesseries.fragment.TopRatedFragment;
 import com.ibra.moviesseries.fragment.UpcomingFragment;
-import com.ibra.moviesseries.model.Genre;
 
-import java.util.ArrayList;
-
-public class HomeActivity extends AppCompatActivity
+public class SeriesActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static final String SHOW_TYPE_PREF = "SHOW_TYPE_PREF";
-    public static final String SHOW_TYPE_EDITOR = "SHOW_TYPE_EDITOR";
-    private static final String TAG = HomeActivity.class.getSimpleName();
-
-
     private Fragment[]fragments = {new TopRatedFragment(),new UpcomingFragment(),new NowPlayingFragment()
-                                    ,new PopularFragment()};
-
-
-
-    private ViewPagerAdapter viewPagerAdapter;
-
-
-
+            ,new PopularFragment()};
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
-    private ArrayList<Genre> genres = new ArrayList<>();
-    private String type = "movie";
+    private ViewPagerAdapter viewPagerAdapter;
+    private String type = "tv";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
-        // setup actionbar
+        setContentView(R.layout.activity_series);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(getString(R.string.movies_activity));
+        getSupportActionBar().setTitle(getString(R.string.tvshow_activity));
 
-        // setup nav-drawer
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -71,22 +55,8 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
-
-        setUpViewpager();
-
-
-
-
-
-    }
-
-
-    private void setUpViewpager() {
-
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),fragments,type);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -132,17 +102,14 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_movies) {
-
+            Intent movieIntent = new Intent(this,HomeActivity.class);
+            startActivity(movieIntent);
         } else if (id == R.id.nav_tvshow) {
-            Intent tvIntent = new Intent(this,SeriesActivity.class);
-            startActivity(tvIntent);
-        }
 
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
 }

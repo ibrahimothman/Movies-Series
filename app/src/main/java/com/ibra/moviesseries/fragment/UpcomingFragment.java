@@ -21,15 +21,26 @@ public class UpcomingFragment extends CatchData{
 
 
     private static final String TAG = UpcomingFragment.class.getSimpleName();
+    private String showType;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(savedInstanceState != null) Log.d(TAG,"not null");
         else Log.d(TAG,"null");
+        Bundle bundle = getArguments();
+        showType = bundle.getString("TYPE");
+
     }
 
+
     @Override
-    protected Call<MovieList> getData() {
-        return ApiClinet.getApiClient().create(ApiInterface.class).getUpcomingMovies();
+    protected  Call getData() {
+        Log.d(TAG,"getdata");
+        Log.d(TAG,"type is "+showType);
+        if(showType.equals("movie")) {
+            Log.d(TAG,"getMovieTopRated");
+            return  ApiClinet.getApiClient().create(ApiInterface.class).getUpcomingMovies();
+        }
     }
 }

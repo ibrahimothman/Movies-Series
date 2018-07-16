@@ -18,4 +18,7 @@
     <string name="setting">Setting</string>
     <string name="action_search">Search</string>
     <string name="error_message">Oops! something went wrong</string>
+    <string name="title_activity_series">SeriesActivity</string>
+    <string name="tvshow_activity">TvShow</string>
+    <string name="movies_activity">Movies</string>
 </resources>

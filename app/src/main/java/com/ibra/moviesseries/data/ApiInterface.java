@@ -2,6 +2,7 @@ package com.ibra.moviesseries.data;
 
 import com.ibra.moviesseries.model.GenreList;
 import com.ibra.moviesseries.model.MovieList;
+import com.ibra.moviesseries.model.TvList;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -22,4 +23,17 @@ public interface ApiInterface {
 
     @GET(Contract.POPULAR_MOVIES)
     public Call<MovieList> getPopularMovies();
+
+
+    @GET(Contract.TOP_RATED_TV)
+    public Call<TvList> getTopReatedTv();
+
+    @GET(Contract.UPCOMING_TV)
+    public Call<TvList> getUpcomingTv();
+
+    @GET(Contract.NOW_PLAYING_TV)
+    public Call<TvList> getNowPlayingTv();
+
+    @GET(Contract.POPULAR_TV)
+    public Call<TvList> getPopularTv();
 }

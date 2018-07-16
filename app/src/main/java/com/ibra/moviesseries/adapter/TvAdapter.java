@@ -4,37 +4,41 @@ import android.content.Context;
 
 import com.ibra.moviesseries.data.Contract;
 import com.ibra.moviesseries.model.Movie;
+import com.ibra.moviesseries.model.Tv;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public  class MovieAdapter extends ListAdapter  {
+public class TvAdapter extends ListAdapter {
 
-    private List<Movie> movieList;
+    private List<Tv> tvList;
 
-    public MovieAdapter(Context mContext, List<Movie>movieList) {
+    public TvAdapter(Context mContext, List<Tv> tvList) {
         super(mContext);
-        this.movieList = movieList;
+        this.tvList = tvList;
     }
 
     @Override
-    protected void bindViews(ListHolder listHolder,Context mContext, int position) {
-        String posterUrl = movieList.get(position).getMoviePoster();
+    protected void bindViews(ListHolder listHolder, Context mContext, int position) {
+        String posterUrl = tvList.get(position).getTvPoster();
         String posterFullUrl = Contract.BASE_URL_IMAGE+"w185/"+posterUrl;
-        String title = movieList.get(position).getMovieTitle();
+        String title = tvList.get(position).getTvTitle();
 
         // update list ui
         Picasso.with(mContext).load(posterFullUrl).into(listHolder.posterImage);
         listHolder.titleTextview.setText(title);
     }
 
-    public void notifyAdapter(List<Movie> movieList){
-        this.movieList = movieList;
+    public void notifyAdapter(List<Tv> tvList){
+        this.tvList = tvList;
         this.notifyDataSetChanged();
     }
 
+
     @Override
     public int getItemCount() {
-        return movieList.size();
+        if(tvList != null)
+          return tvList.size();
+        else return 0;
     }
 }
