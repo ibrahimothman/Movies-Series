@@ -41,6 +41,9 @@ public class UpcomingFragment extends CatchData{
         if(showType.equals("movie")) {
             Log.d(TAG,"getMovieTopRated");
             return  ApiClinet.getApiClient().create(ApiInterface.class).getUpcomingMovies();
+        }else {
+            Log.d(TAG,"getTvTopRated");
+            return  ApiClinet.getApiClient().create(ApiInterface.class).getUpcomingTv();
         }
     }
 }
