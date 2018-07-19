@@ -30,6 +30,8 @@ public class SeriesActivity extends AppCompatActivity
     private Fragment[]fragments = {new TopRatedFragment(),new UpcomingFragment(),new NowPlayingFragment()
             ,new PopularFragment()};
 
+    String[]tabNames = {"TOP RATED","AIRING TODAY","ON THE AIR","POPULAR"};
+
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private ViewPagerAdapter viewPagerAdapter;
@@ -57,7 +59,7 @@ public class SeriesActivity extends AppCompatActivity
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),fragments,type);
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),fragments,tabNames,type);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 

@@ -1,10 +1,13 @@
 package com.ibra.moviesseries.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Movie {
+public class Movie implements Parcelable {
 
     @SerializedName("vote_count")
     private int movieVoteCount;
@@ -49,6 +52,24 @@ public class Movie {
 
     @SerializedName("genre_ids")
     private List<Double> movieGenreList;
+
+
+    protected Movie(Parcel in) {
+        movieVoteCount = in.readInt();
+        movieId = in.readInt();
+        videoExist = in.readByte() != 0;
+        movieVoteAverage = in.readDouble();
+        movieTitle = in.readString();
+        moviePopularity = in.readDouble();
+        moviePoster = in.readString();
+        movieLanguage = in.readString();
+        movieOriginalTitle = in.readString();
+        movieBackDropPoster = in.readString();
+        movieIsAdult = in.readByte() != 0;
+        movieOverview = in.readString();
+        movieReleaseDate = in.readString();
+    }
+
 
 
     public int getMovieVoteCount() {
@@ -162,4 +183,38 @@ public class Movie {
     public void setMovieGenreList(List<Double> movieGenreList) {
         this.movieGenreList = movieGenreList;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(movieVoteCount);
+        dest.writeInt(movieId);
+        dest.writeByte((byte) (videoExist ? 1 : 0));
+        dest.writeDouble(movieVoteAverage);
+        dest.writeString(movieTitle);
+        dest.writeDouble(moviePopularity);
+        dest.writeString(moviePoster);
+        dest.writeString(movieLanguage);
+        dest.writeString(movieOriginalTitle);
+        dest.writeString(movieBackDropPoster);
+        dest.writeByte((byte) (movieIsAdult ? 1 : 0));
+        dest.writeString(movieOverview);
+        dest.writeString(movieReleaseDate);
+    }
+
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 }

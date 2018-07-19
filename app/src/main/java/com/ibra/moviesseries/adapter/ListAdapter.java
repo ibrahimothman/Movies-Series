@@ -30,10 +30,18 @@ public abstract class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ListHolder holder, final int position) {
         ListHolder listHolder = (ListHolder) holder;
         bindViews(listHolder,mContext,position);
+        listHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onViewClicked(position);
+            }
+        });
     }
+
+    protected abstract void onViewClicked(int position);
 
     protected abstract void bindViews(ListHolder listHolder,Context mContext, int position);
 

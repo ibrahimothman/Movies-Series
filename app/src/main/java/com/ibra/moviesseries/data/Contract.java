@@ -16,6 +16,8 @@ public class Contract {
     public static final String NOW_PLAYING_TV = BASE_URL+"tv/on_the_air?api_key="+API_KEY;
     public static final String POPULAR_TV = BASE_URL+"tv/popular?api_key="+API_KEY;
 
+    public static final String MOVIE_CRIDIT = BASE_URL+"movie/{id}?api_key="+API_KEY+"&append_to_response=credits";
+
 
     public static final String BASE_URL_IMAGE = "http://image.tmdb.org/t/p/";
 

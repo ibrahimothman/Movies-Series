@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity
 
     private Fragment[]fragments = {new TopRatedFragment(),new UpcomingFragment(),new NowPlayingFragment()
                                     ,new PopularFragment()};
-
+    String[]tabNames = {"TOP RATED","UPCOMING","NOW PLAYING","POPULAR"};
 
 
     private ViewPagerAdapter viewPagerAdapter;
@@ -87,7 +87,7 @@ public class HomeActivity extends AppCompatActivity
 
     private void setUpViewpager() {
 
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),fragments,type);
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),fragments,tabNames,type);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 

@@ -5,4 +5,9 @@
     <dimen name="nav_header_vertical_spacing">20dp</dimen>
     <dimen name="nav_header_height">140dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_layout_size">400dp</dimen>
+    <dimen name="expanded_title_margin_end">64</dimen>
+    <dimen name="expanded_title_margin_start">48</dimen>
+    <dimen name="margin">16</dimen>
+    <dimen name="detail_metabar_title_bottom_padding">8</dimen>
 </resources>

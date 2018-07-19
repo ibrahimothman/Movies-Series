@@ -19,21 +19,28 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     private static final CharSequence POPULAR = "POPULAR";
     private static final CharSequence ON_THE_AIR = "ON THE AIR";
     private static final CharSequence AIRING_TODAY = "AIRING TODAY";
+
+
+
     private Fragment[] fragments;
-
     private String type;
+    private String[]tabNames;
 
 
 
-    public ViewPagerAdapter(FragmentManager fm, Fragment[]fragments,String type) {
+    public ViewPagerAdapter(FragmentManager fm, Fragment[]fragments, String[]tabNames,String type) {
         super(fm);
         this.fragments = fragments;
-
+        this.tabNames = tabNames;
         this.type = type;
-
 
     }
 
+    public ViewPagerAdapter(FragmentManager fm, Fragment[] fragments, String[]tabNames) {
+        super(fm);
+        this.fragments = fragments;
+        this.tabNames = tabNames;
+    }
 
     @Override
     public Fragment getItem(int position) {
@@ -52,12 +59,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        if(position == 0) return TOP_RATED;
-        else if(position == 1 && type.equals("movie")) return UPCOMING;
-        else if(position == 1 && type.equals("tv")) return AIRING_TODAY;
-        else if(position == 2 && type.equals("movie")) return NOW_PALYING;
-        else if(position == 2 && type.equals("tv")) return ON_THE_AIR;
-        else if(position == 3) return POPULAR;
-        else return null;
+        return tabNames[position];
     }
 }

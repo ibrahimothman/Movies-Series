@@ -1,6 +1,7 @@
 package com.ibra.moviesseries.adapter;
 
 import android.content.Context;
+import android.view.View;
 
 import com.ibra.moviesseries.data.Contract;
 import com.ibra.moviesseries.model.Movie;
@@ -17,6 +18,8 @@ public class TvAdapter extends ListAdapter {
         super(mContext);
         this.tvList = tvList;
     }
+
+
 
     @Override
     protected void bindViews(ListHolder listHolder, Context mContext, int position) {
@@ -40,5 +43,10 @@ public class TvAdapter extends ListAdapter {
         if(tvList != null)
           return tvList.size();
         else return 0;
+    }
+
+    @Override
+    protected void onViewClicked(int position) {
+
     }
 }
