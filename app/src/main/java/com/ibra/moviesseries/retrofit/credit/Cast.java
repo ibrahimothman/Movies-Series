@@ -1,38 +1,38 @@
-package com.ibra.moviesseries.model;
+package com.ibra.moviesseries.retrofit.credit;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Crew {
+public class Cast {
 
-    @SerializedName("credit_id")
-    private String creditId;
+    @SerializedName("cast_id")
+    private int castId;
 
-    @SerializedName("department")
-    private String department;
+    @SerializedName("character")
+    private String character;
 
     @SerializedName("id")
     private int id;
-
     @SerializedName("name")
     private String name;
 
     @SerializedName("profile_path")
     private String profilePath;
 
-    public String getCreditId() {
-        return creditId;
+
+    public int getCastId() {
+        return castId;
     }
 
-    public void setCreditId(String creditId) {
-        this.creditId = creditId;
+    public void setCastId(int castId) {
+        this.castId = castId;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getCharacter() {
+        return character;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setCharacter(String character) {
+        this.character = character;
     }
 
     public int getId() {

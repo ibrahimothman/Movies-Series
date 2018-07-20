@@ -1,6 +1,6 @@
 package com.ibra.moviesseries.data;
 
-public class Contract {
+public class Constant {
 
     public static final String API_KEY = "b74d1d1ae9314a57ace0a639dfff09ef";
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
@@ -17,6 +17,9 @@ public class Contract {
     public static final String POPULAR_TV = BASE_URL+"tv/popular?api_key="+API_KEY;
 
     public static final String MOVIE_CRIDIT = BASE_URL+"movie/{id}?api_key="+API_KEY+"&append_to_response=credits";
+
+    public static final String MOVIE_VIDEO = BASE_URL+"movie/{id}/videos?api_key="+API_KEY;
+
 
 
     public static final String BASE_URL_IMAGE = "http://image.tmdb.org/t/p/";

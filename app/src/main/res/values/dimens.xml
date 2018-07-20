@@ -10,4 +10,6 @@
     <dimen name="expanded_title_margin_start">48</dimen>
     <dimen name="margin">16</dimen>
     <dimen name="detail_metabar_title_bottom_padding">8</dimen>
+    <dimen name="poster_width_default">99dp</dimen>
+    <dimen name="poster_height_default">150dp</dimen>
 </resources>

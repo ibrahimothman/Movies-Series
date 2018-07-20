@@ -2,7 +2,6 @@ package com.ibra.moviesseries.ui;
 
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -14,17 +13,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.adapter.ViewPagerAdapter;
-import com.ibra.moviesseries.fragment.NowPlayingFragment;
-import com.ibra.moviesseries.fragment.PopularFragment;
-import com.ibra.moviesseries.fragment.TopRatedFragment;
-import com.ibra.moviesseries.fragment.UpcomingFragment;
-import com.ibra.moviesseries.model.Genre;
+import com.ibra.moviesseries.fragment.movie.NowPlayingMovieFragment;
+import com.ibra.moviesseries.fragment.movie.PopularMovieFragment;
+import com.ibra.moviesseries.fragment.movie.TopRatedMovieFragment;
+import com.ibra.moviesseries.fragment.movie.UpcomingMovieFragment;
+import com.ibra.moviesseries.retrofit.genre.Genre;
 
 import java.util.ArrayList;
 
@@ -36,8 +34,8 @@ public class HomeActivity extends AppCompatActivity
     private static final String TAG = HomeActivity.class.getSimpleName();
 
 
-    private Fragment[]fragments = {new TopRatedFragment(),new UpcomingFragment(),new NowPlayingFragment()
-                                    ,new PopularFragment()};
+    private Fragment[]fragments = {new TopRatedMovieFragment(),new UpcomingMovieFragment(),new NowPlayingMovieFragment()
+                                    ,new PopularMovieFragment()};
     String[]tabNames = {"TOP RATED","UPCOMING","NOW PLAYING","POPULAR"};
 
 

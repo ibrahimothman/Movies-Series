@@ -1,13 +1,11 @@
-package com.ibra.moviesseries.data;
+package com.ibra.moviesseries.data.api;
 
 import android.util.Log;
-
-import com.ibra.moviesseries.model.Genre;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.ibra.moviesseries.data.Contract.BASE_URL;
+import static com.ibra.moviesseries.data.Constant.BASE_URL;
 
 public class ApiClinet {
 

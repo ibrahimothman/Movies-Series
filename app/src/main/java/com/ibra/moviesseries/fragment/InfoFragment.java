@@ -11,14 +11,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ibra.moviesseries.R;
-import com.ibra.moviesseries.data.ApiClinet;
-import com.ibra.moviesseries.data.ApiInterface;
-import com.ibra.moviesseries.model.Cast;
-import com.ibra.moviesseries.model.Crew;
-import com.ibra.moviesseries.model.Credit;
-import com.ibra.moviesseries.model.Genre;
-import com.ibra.moviesseries.model.Movie;
+import com.ibra.moviesseries.data.api.ApiClinet;
+import com.ibra.moviesseries.data.api.ApiInterface;
+import com.ibra.moviesseries.event.Event;
+import com.ibra.moviesseries.retrofit.credit.Crew;
+import com.ibra.moviesseries.retrofit.credit.Credit;
+import com.ibra.moviesseries.retrofit.genre.Genre;
+import com.ibra.moviesseries.retrofit.movie.Movie;
 import com.ibra.moviesseries.ui.DetailActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,11 +70,6 @@ public class InfoFragment extends Fragment {
         }
 
         loadCridit();
-
-
-
-
-
         return view;
     }
 
@@ -85,6 +82,7 @@ public class InfoFragment extends Fragment {
             public void onResponse(Call<Credit> call, Response<Credit> response) {
                 credit = response.body();
                 Log.d(TAG,"title is "+ credit.getTitle());
+                EventBus.getDefault().post(new Event(credit.getCastCrewList().getCastList()));
                 updateUi();
             }
 
@@ -96,17 +94,18 @@ public class InfoFragment extends Fragment {
     }
 
     private void updateUi() {
-        List<Genre> genres = credit.getGenres();
-        StringBuilder genreBuilder = new StringBuilder();
-        for(Genre genre : genres){
-            String g = genre.getName();
-            genreBuilder.append(g);
-            if(genre != (genres.get(genres.size()-1))){
-                genreBuilder.append(" | ");
-            }
-        }
+        releaseDateTextview.setText(credit.getReleaseDate());
+        rateTextview.setText(credit.getVoteAverage()+"/10");
+        languageTextview.setText(credit.getOriginalLanguage());
+        directorTextview.setText(getDirector());
+        overviewTextview.setText(credit.getOverview());
+        genreTextview.setText(getGenres());
+        titleTextview.setText(credit.getTitle());
 
+    }
 
+    // get movie directors
+    private StringBuilder getDirector() {
         List<Crew> crewList = credit.getCastCrewList().getCrewList();
         List<String> directors = new ArrayList<>();
         StringBuilder directorBuilder = new StringBuilder();
@@ -120,20 +119,23 @@ public class InfoFragment extends Fragment {
                 }
             }
         }
-
-        Log.d(TAG,movie.getMovieId()+"");
-        releaseDateTextview.setText(credit.getReleaseDate());
-        rateTextview.setText(credit.getVoteAverage()+"/10");
-
-        languageTextview.setText(credit.getOriginalLanguage());
-        directorTextview.setText(directorBuilder.toString());
-        overviewTextview.setText(credit.getOverview());
-        genreTextview.setText(genreBuilder.toString());
-        titleTextview.setText(credit.getTitle());
-
+        return directorBuilder;
     }
 
 
+    // get movie genres
+    private StringBuilder getGenres() {
+        List<Genre> genres = credit.getGenres();
+        StringBuilder genreBuilder = new StringBuilder();
+        for(Genre genre : genres){
+            String g = genre.getName();
+            genreBuilder.append(g);
+            if(genre != (genres.get(genres.size()-1))){
+                genreBuilder.append(" | ");
+            }
+        }
+        return genreBuilder;
+    }
 
 
 }

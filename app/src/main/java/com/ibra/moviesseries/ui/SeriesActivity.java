@@ -2,12 +2,9 @@ package com.ibra.moviesseries.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,16 +16,16 @@ import android.view.MenuItem;
 
 import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.adapter.ViewPagerAdapter;
-import com.ibra.moviesseries.fragment.NowPlayingFragment;
-import com.ibra.moviesseries.fragment.PopularFragment;
-import com.ibra.moviesseries.fragment.TopRatedFragment;
-import com.ibra.moviesseries.fragment.UpcomingFragment;
+import com.ibra.moviesseries.fragment.movie.NowPlayingMovieFragment;
+import com.ibra.moviesseries.fragment.movie.PopularMovieFragment;
+import com.ibra.moviesseries.fragment.movie.TopRatedMovieFragment;
+import com.ibra.moviesseries.fragment.movie.UpcomingMovieFragment;
 
 public class SeriesActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Fragment[]fragments = {new TopRatedFragment(),new UpcomingFragment(),new NowPlayingFragment()
-            ,new PopularFragment()};
+    private Fragment[]fragments = {new TopRatedMovieFragment(),new UpcomingMovieFragment(),new NowPlayingMovieFragment()
+            ,new PopularMovieFragment()};
 
     String[]tabNames = {"TOP RATED","AIRING TODAY","ON THE AIR","POPULAR"};
 

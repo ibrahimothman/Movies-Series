@@ -1,4 +1,4 @@
-package com.ibra.moviesseries.model;
+package com.ibra.moviesseries.retrofit.genre;
 
 import com.google.gson.annotations.SerializedName;
 

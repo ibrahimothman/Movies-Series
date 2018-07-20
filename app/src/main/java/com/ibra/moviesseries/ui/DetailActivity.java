@@ -12,11 +12,11 @@ import android.widget.ImageView;
 
 import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.adapter.ViewPagerAdapter;
-import com.ibra.moviesseries.data.Contract;
+import com.ibra.moviesseries.data.Constant;
 import com.ibra.moviesseries.fragment.CastFragment;
 import com.ibra.moviesseries.fragment.InfoFragment;
 import com.ibra.moviesseries.fragment.VideoFragment;
-import com.ibra.moviesseries.model.Movie;
+import com.ibra.moviesseries.retrofit.movie.Movie;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -60,8 +60,11 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null && intent.getParcelableExtra("movie") != null) {
             movie = intent.getParcelableExtra("movie");
-            String poster = Contract.BASE_URL_IMAGE + "w185/" + movie.getMoviePoster();
-            Picasso.with(this).load(poster).into(moviePoster);
+            String poster = Constant.BASE_URL_IMAGE + "w185/" + movie.getMoviePoster();
+            Picasso.with(this).load(poster)
+                    .resizeDimen(R.dimen.poster_width_default,R.dimen.poster_height_default)
+                    .centerCrop()
+                    .into(moviePoster);
 
 
         }

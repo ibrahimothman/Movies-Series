@@ -1,4 +1,4 @@
-package com.ibra.moviesseries.model;
+package com.ibra.moviesseries.retrofit.movie;
 
 import android.os.Parcel;
 import android.os.Parcelable;

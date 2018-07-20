@@ -1,6 +1,7 @@
-package com.ibra.moviesseries.model;
+package com.ibra.moviesseries.retrofit.credit;
 
 import com.google.gson.annotations.SerializedName;
+import com.ibra.moviesseries.retrofit.genre.Genre;
 
 import java.util.List;
 
@@ -40,7 +41,6 @@ public class Credit {
 
     @SerializedName("credits")
     private CastCrowList castCrewList;
-
 
     @SerializedName("overview")
     public String overview;

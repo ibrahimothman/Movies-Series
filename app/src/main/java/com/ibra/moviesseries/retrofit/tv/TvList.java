@@ -1,6 +1,7 @@
-package com.ibra.moviesseries.model;
+package com.ibra.moviesseries.retrofit.tv;
 
 import com.google.gson.annotations.SerializedName;
+import com.ibra.moviesseries.retrofit.tv.Tv;
 
 import java.util.List;
 

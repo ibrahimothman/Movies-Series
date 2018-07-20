@@ -23,7 +23,7 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#efebe9"
+                android:background="@android:color/white"
                 >
 
                 <ImageView
@@ -31,7 +31,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@drawable/captain_america"
@@ -52,6 +51,7 @@
             android:layout_gravity="bottom"
             app:layout_collapseMode="pin"
             app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabIndicatorColor="@color/colorPrimary"
             />
     </android.support.design.widget.AppBarLayout>
 

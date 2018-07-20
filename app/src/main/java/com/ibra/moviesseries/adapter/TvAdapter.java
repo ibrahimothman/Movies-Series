@@ -1,11 +1,10 @@
 package com.ibra.moviesseries.adapter;
 
 import android.content.Context;
-import android.view.View;
 
-import com.ibra.moviesseries.data.Contract;
-import com.ibra.moviesseries.model.Movie;
-import com.ibra.moviesseries.model.Tv;
+import com.ibra.moviesseries.R;
+import com.ibra.moviesseries.data.Constant;
+import com.ibra.moviesseries.retrofit.tv.Tv;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -24,12 +23,15 @@ public class TvAdapter extends ListAdapter {
     @Override
     protected void bindViews(ListHolder listHolder, Context mContext, int position) {
         String posterUrl = tvList.get(position).getTvPoster();
-        String posterFullUrl = Contract.BASE_URL_IMAGE+"w185/"+posterUrl;
+        String posterFullUrl = Constant.BASE_URL_IMAGE+"w185/"+posterUrl;
         String title = tvList.get(position).getTvTitle();
 
         // update list ui
-        Picasso.with(mContext).load(posterFullUrl).into(listHolder.posterImage);
-        listHolder.titleTextview.setText(title);
+        Picasso.with(mContext).load(posterFullUrl)
+                .resizeDimen(R.dimen.poster_width_default,R.dimen.poster_height_default)
+                .centerCrop()
+                .into(listHolder.Image);
+        listHolder.title.setText(title);
     }
 
     public void notifyAdapter(List<Tv> tvList){
