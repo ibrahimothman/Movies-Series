@@ -12,52 +12,29 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public  class MovieAdapter extends ListAdapter  {
+public class MovieAdapter extends ShowAdapter  {
 
-    private List<Show> showList;
-    private Context mContext;
-
-    public MovieAdapter(Context mContext, List<Show>showList) {
-        super(mContext);
-        this.mContext = mContext;
-        this.showList = showList;
-    }
-
-
-
-    @Override
-    protected void bindViews(ListHolder listHolder,Context mContext, int position) {
-        String posterUrl = showList.get(position).getMoviePoster();
-        String posterFullUrl = Constant.BASE_URL_IMAGE+"w185/"+posterUrl;
-        String title = showList.get(position).getTitle();
-
-        // update list ui
-        Picasso.with(mContext).load(posterFullUrl)
-                .resizeDimen(R.dimen.poster_width_default,R.dimen.poster_height_default)
-                .centerCrop()
-                .into(listHolder.Image);
-        listHolder.title.setText(title);
-        listHolder.job.setVisibility(View.GONE);
-        listHolder.playImage.setVisibility(View.GONE);
-    }
-
-    public void notifyAdapter(List<Show> movieList){
-        this.showList = movieList;
-        this.notifyDataSetChanged();
+    public MovieAdapter(Context mContext, List<Show> showList) {
+        super(mContext, showList);
     }
 
     @Override
-    public int getItemCount() {
-        if(showList != null) return showList.size();
-        else return 0;
+    protected int setPlayImageVisibility() {
+        return View.GONE;
     }
 
     @Override
-    protected void onViewClicked(int position) {
-        Intent detailIntent = new Intent(mContext, DetailActivity.class);
-        detailIntent.putExtra("show",showList.get(position));
-        detailIntent.putExtra("type","movie");
-        mContext.startActivity(detailIntent);
-
+    protected int setJopVisibility() {
+        return View.GONE;
     }
+
+    @Override
+    protected void onViewClick(Context context, Show show) {
+        Intent intent = new Intent(context,DetailActivity.class);
+        intent.putExtra("show",show);
+        intent.putExtra("type","movie");
+        context.startActivity(intent);
+    }
+
+
 }

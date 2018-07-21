@@ -12,53 +12,28 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class TvAdapter extends ListAdapter {
+public class TvAdapter extends ShowAdapter {
 
-    private List<Show> showList;
-    private Context mContext;
 
     public TvAdapter(Context mContext, List<Show> showList) {
-        super(mContext);
-        this.showList = showList;
-        this.mContext = mContext;
-    }
-
-
-
-    @Override
-    protected void bindViews(ListHolder listHolder, Context mContext, int position) {
-        String posterUrl = showList.get(position).getMoviePoster();
-        String posterFullUrl = Constant.BASE_URL_IMAGE+"w185/"+posterUrl;
-        String title = showList.get(position).getTitle();
-
-        // update list ui
-        Picasso.with(mContext).load(posterFullUrl)
-                .resizeDimen(R.dimen.poster_width_default,R.dimen.poster_height_default)
-                .centerCrop()
-                .into(listHolder.Image);
-        listHolder.title.setText(title);
-        listHolder.job.setVisibility(View.GONE);
-        listHolder.playImage.setVisibility(View.GONE);
-    }
-
-    public void notifyAdapter(List<Show> tvList){
-        this.showList = tvList;
-        this.notifyDataSetChanged();
-    }
-
-
-    @Override
-    public int getItemCount() {
-        if(showList != null)
-          return showList.size();
-        else return 0;
+        super(mContext, showList);
     }
 
     @Override
-    protected void onViewClicked(int position) {
-        Intent detailIntent = new Intent(mContext, DetailActivity.class);
-        detailIntent.putExtra("show",showList.get(position));
-        detailIntent.putExtra("type","tv");
-        mContext.startActivity(detailIntent);
+    protected int setPlayImageVisibility() {
+        return View.GONE;
+    }
+
+    @Override
+    protected int setJopVisibility() {
+        return View.GONE;
+    }
+
+    @Override
+    protected void onViewClick(Context context, Show show) {
+        Intent intent = new Intent(context,DetailActivity.class);
+        intent.putExtra("show",show);
+        intent.putExtra("type","tv");
+        context.startActivity(intent);
     }
 }
