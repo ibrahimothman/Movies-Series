@@ -30,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InfoFragment extends Fragment {
+public class InfoFragment extends BaseDetailFragment {
 
     private static final String TAG = InfoFragment.class.getSimpleName();
 
@@ -50,48 +50,25 @@ public class InfoFragment extends Fragment {
     ImageView mPosterImage;
 
 
-    private Show show;
-    private String type;
-    private Credit credit;
+
 
     public InfoFragment() {
     }
+
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.info_fragment,container,false);
         ButterKnife.bind(this,view);
-
-
-        // get some info from detail activity
-        if(getActivity() != null){
-            show = ((DetailActivity)getActivity()).show;
-            type = ((DetailActivity)getActivity()).type;
-        }
-
         loadData();
         return view;
     }
 
-    private void loadData() {
-        Call<Credit> call = ApiClinet.getApiClient().create(ApiInterface.class).getCridit(type,show.getMovieId());
-        call.enqueue(new Callback<Credit>() {
-            @Override
-            public void onResponse(Call<Credit> call, Response<Credit> response) {
-                credit =  response.body();
-                updateUi();
 
-            }
-
-            @Override
-            public void onFailure(Call<Credit> call, Throwable t) {
-                Log.d(TAG,"error "+t.getLocalizedMessage());
-            }
-        });
-    }
-
-    private void updateUi() {
+    @Override
+    protected void updateUi() {
         mTitleText.setText(show.getTitle());
         mGenreText.setText(getGenres());
         mDurationText.setText(credit.getDuration()+" mins");

@@ -18,6 +18,7 @@ public class Constant {
 
 
     public static final String CRIDIT = BASE_URL+"{type}/{id}?api_key="+API_KEY+"&append_to_response=credits";
+    public static final String VIDEO = BASE_URL+"{type}/{id}/videos?api_key="+API_KEY;
 
 
 

@@ -55,7 +55,7 @@ public class CastFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.list,container,false);
         ButterKnife.bind(this,view);
 
-        // get type (movie or tv)
+        // get type (movie or tv) and show
         if(getActivity() != null){
             show = ((DetailActivity)getActivity()).show;
             type = ((DetailActivity)getActivity()).type;

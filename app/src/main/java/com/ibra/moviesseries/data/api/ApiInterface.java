@@ -24,4 +24,8 @@ public interface ApiInterface {
     public Call<Credit> getCridit(@Path("type") String type, @Path("id") int id);
 
 
+    @GET(Constant.VIDEO)
+    public Call<VideoList> getVideos(@Path("type") String type, @Path("id") int id);
+
+
 }
