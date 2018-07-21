@@ -20,12 +20,16 @@ import com.ibra.moviesseries.fragment.movie.NowPlayingMovieFragment;
 import com.ibra.moviesseries.fragment.movie.PopularMovieFragment;
 import com.ibra.moviesseries.fragment.movie.TopRatedMovieFragment;
 import com.ibra.moviesseries.fragment.movie.UpcomingMovieFragment;
+import com.ibra.moviesseries.fragment.tv.AiringTodayFragment;
+import com.ibra.moviesseries.fragment.tv.OnAirTvFragment;
+import com.ibra.moviesseries.fragment.tv.PopularTvFragment;
+import com.ibra.moviesseries.fragment.tv.TopRatedTvFragment;
 
 public class SeriesActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Fragment[]fragments = {new TopRatedMovieFragment(),new UpcomingMovieFragment(),new NowPlayingMovieFragment()
-            ,new PopularMovieFragment()};
+    private Fragment[]fragments = {new TopRatedTvFragment(),new AiringTodayFragment(),new OnAirTvFragment()
+            ,new PopularTvFragment()};
 
     String[]tabNames = {"TOP RATED","AIRING TODAY","ON THE AIR","POPULAR"};
 

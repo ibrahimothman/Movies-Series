@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.data.Constant;
+import com.ibra.moviesseries.retrofit.credit.Credit;
 import com.ibra.moviesseries.retrofit.movie.Movie;
 import com.ibra.moviesseries.ui.DetailActivity;
 import com.squareup.picasso.Picasso;

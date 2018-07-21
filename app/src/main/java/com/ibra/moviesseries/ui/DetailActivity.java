@@ -2,41 +2,50 @@ package com.ibra.moviesseries.ui;
 
 
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.WindowManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 
 import com.ibra.moviesseries.R;
-import com.ibra.moviesseries.adapter.ViewPagerAdapter;
-import com.ibra.moviesseries.data.Constant;
-import com.ibra.moviesseries.fragment.CastFragment;
-import com.ibra.moviesseries.fragment.InfoFragment;
-import com.ibra.moviesseries.fragment.VideoFragment;
 import com.ibra.moviesseries.retrofit.movie.Movie;
-import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Optional;
 
 public class DetailActivity extends AppCompatActivity {
 
     private static final String TAG = DetailActivity.class.getSimpleName();
 
-    private ViewPagerAdapter viewPagerAdapter;
-    private Fragment[] fragments = {new InfoFragment(), new VideoFragment(), new CastFragment()};
-    private String[] tabNames = {"INFO", "VIDEOS", "CAST"};
+
+    @BindView(R.id.title_detail)
+    TextView mTitleText;
+    @BindView(R.id.genre_detail)
+    TextView mGenreText;
+    @BindView(R.id.release_date_detail)
+    TextView mDateText;
+    @BindView(R.id.duration_detail)
+    TextView mDurationText;
+    @BindView(R.id.rate_detail)
+    TextView mRateText;
+    @BindView(R.id.overview_detail)
+    TextView mOverviewText;
+    @BindView(R.id.cast_list)
+    RecyclerView mCastList;
+    @BindView(R.id.crew_list)
+    RecyclerView mCrewList;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
 
-    @BindView(R.id.viewpager_detail)
-    ViewPager mViewPager;
-    @BindView(R.id.tablayout_detail)
-    TabLayout mTabLayout;
     @BindView(R.id.image_detail)
-    ImageView moviePoster;
+    ImageView mPosterImage;
+
 
     public Movie movie;
 
@@ -45,36 +54,31 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // transparent status bar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
-
-        // setup viewpager
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments, tabNames);
-        mViewPager.setAdapter(viewPagerAdapter);
-        mTabLayout.setupWithViewPager(mViewPager);
 
         // get movie detail
         Intent intent = getIntent();
         if (intent != null && intent.getParcelableExtra("movie") != null) {
             movie = intent.getParcelableExtra("movie");
-            String poster = Constant.BASE_URL_IMAGE + "w185/" + movie.getMoviePoster();
-            Picasso.with(this).load(poster)
-                    .resizeDimen(R.dimen.poster_width_default,R.dimen.poster_height_default)
-                    .centerCrop()
-                    .into(moviePoster);
-
 
         }
+
+        // setup toolbar
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle(movie.getMovieTitle());
+
+        updateUi();
 
 
 
 
     }
 
+    private void updateUi() {
+        mTitleText.setText(movie.getMovieTitle());
 
+    }
 
 
 }
