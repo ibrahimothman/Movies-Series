@@ -8,9 +8,8 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.DetailActivity">
 
-    <include
-        android:id="@+id/toobar"
-        layout="@layout/toolbar" />
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
 
     <android.support.v7.widget.CardView xmlns:cardview="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cardview_id"
@@ -22,7 +21,7 @@
         android:foreground="?android:attr/selectableItemBackground"
         cardview:cardCornerRadius="4dp"
         cardview:layout_constraintStart_toStartOf="parent"
-        cardview:layout_constraintTop_toBottomOf="@+id/toobar">
+        cardview:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <ImageView
             android:id="@+id/image_detail"
@@ -40,7 +39,7 @@
         android:textColor="@android:color/black"
         android:textSize="@dimen/title_size"
         app:layout_constraintStart_toEndOf="@+id/cardview_id"
-        app:layout_constraintTop_toBottomOf="@+id/toobar"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:text="Ready Player One" />
 
     <TextView

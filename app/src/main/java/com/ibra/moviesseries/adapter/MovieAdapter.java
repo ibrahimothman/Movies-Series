@@ -13,22 +13,22 @@ import java.util.List;
 
 public  class MovieAdapter extends ListAdapter  {
 
-    private List<Show> movieList;
+    private List<Show> showList;
     private Context mContext;
 
-    public MovieAdapter(Context mContext, List<Show>movieList) {
+    public MovieAdapter(Context mContext, List<Show>showList) {
         super(mContext);
         this.mContext = mContext;
-        this.movieList = movieList;
+        this.showList = showList;
     }
 
 
 
     @Override
     protected void bindViews(ListHolder listHolder,Context mContext, int position) {
-        String posterUrl = movieList.get(position).getMoviePoster();
+        String posterUrl = showList.get(position).getMoviePoster();
         String posterFullUrl = Constant.BASE_URL_IMAGE+"w185/"+posterUrl;
-        String title = movieList.get(position).getTitle();
+        String title = showList.get(position).getTitle();
 
         // update list ui
         Picasso.with(mContext).load(posterFullUrl)
@@ -39,20 +39,21 @@ public  class MovieAdapter extends ListAdapter  {
     }
 
     public void notifyAdapter(List<Show> movieList){
-        this.movieList = movieList;
+        this.showList = movieList;
         this.notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        if(movieList != null) return movieList.size();
+        if(showList != null) return showList.size();
         else return 0;
     }
 
     @Override
     protected void onViewClicked(int position) {
         Intent detailIntent = new Intent(mContext, DetailActivity.class);
-        detailIntent.putExtra("movie",movieList.get(position));
+        detailIntent.putExtra("show",showList.get(position));
+        detailIntent.putExtra("type","movie");
         mContext.startActivity(detailIntent);
 
     }

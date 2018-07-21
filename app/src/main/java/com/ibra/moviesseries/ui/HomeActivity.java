@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private ArrayList<Genre> genres = new ArrayList<>();
-    private String type = "movie";
+    private String type = "show";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

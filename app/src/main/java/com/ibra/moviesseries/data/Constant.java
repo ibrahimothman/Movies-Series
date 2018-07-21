@@ -17,9 +17,9 @@ public class Constant {
     public static final String LOAD_TVS = BASE_URL+"tv/{cat}?api_key="+API_KEY;
 
 
-    public static final String MOVIE_CRIDIT = BASE_URL+"movie/{id}?api_key="+API_KEY+"&append_to_response=credits";
+    public static final String CRIDIT = BASE_URL+"{type}/{id}?api_key="+API_KEY+"&append_to_response=credits";
 
-    public static final String MOVIE_VIDEO = BASE_URL+"movie/{id}/videos?api_key="+API_KEY;
+
 
 
 

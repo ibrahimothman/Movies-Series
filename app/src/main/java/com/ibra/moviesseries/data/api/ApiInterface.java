@@ -20,11 +20,8 @@ public interface ApiInterface {
     public Call<ShowList> getTvShows(@Path("cat") String category);
 
 
-    @GET(Constant.MOVIE_CRIDIT)
-    public Call<Credit> getMovieCridit(@Path("id") int id);
-
-    @GET(Constant.MOVIE_VIDEO)
-    public Call<VideoList> getMovieVideo(@Path("id") int id);
+    @GET(Constant.CRIDIT)
+    public Call<Credit> getCridit(@Path("type") String type, @Path("id") int id);
 
 
 }
