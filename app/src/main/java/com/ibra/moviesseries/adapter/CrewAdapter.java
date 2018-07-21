@@ -38,6 +38,7 @@ public class CrewAdapter extends ListAdapter {
                 .into(listHolder.Image);
         listHolder.title.setText(title);
         listHolder.job.setVisibility(View.VISIBLE);
+        listHolder.playImage.setVisibility(View.GONE);
         listHolder.job.setText(crewList.get(position).getDepartment());
     }
 

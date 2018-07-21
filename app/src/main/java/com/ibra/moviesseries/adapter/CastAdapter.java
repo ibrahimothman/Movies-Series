@@ -37,6 +37,7 @@ public class CastAdapter extends ListAdapter {
                 .into(listHolder.Image);
         listHolder.title.setText(title);
         listHolder.job.setVisibility(View.VISIBLE);
+        listHolder.playImage.setVisibility(View.GONE);
         listHolder.job.setText(castList.get(position).getCharacter());
     }
 

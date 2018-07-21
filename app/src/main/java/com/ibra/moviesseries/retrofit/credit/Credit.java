@@ -2,6 +2,7 @@ package com.ibra.moviesseries.retrofit.credit;
 
 import com.google.gson.annotations.SerializedName;
 import com.ibra.moviesseries.retrofit.genre.Genre;
+import com.ibra.moviesseries.retrofit.video.VideoList;
 
 import java.util.List;
 
@@ -17,7 +18,16 @@ public class Credit {
     @SerializedName("credits")
     private CastCrowList castCrewList;
 
+    @SerializedName("videos")
+    private VideoList videoList;
 
+    public VideoList getVideoList() {
+        return videoList;
+    }
+
+    public void setVideoList(VideoList videoList) {
+        this.videoList = videoList;
+    }
 
     public List<Genre> getGenres() {
         return genres;

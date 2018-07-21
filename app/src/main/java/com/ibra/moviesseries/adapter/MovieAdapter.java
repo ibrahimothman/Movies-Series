@@ -38,6 +38,7 @@ public  class MovieAdapter extends ListAdapter  {
                 .into(listHolder.Image);
         listHolder.title.setText(title);
         listHolder.job.setVisibility(View.GONE);
+        listHolder.playImage.setVisibility(View.GONE);
     }
 
     public void notifyAdapter(List<Show> movieList){

@@ -52,10 +52,7 @@ public class VideoAdapter extends ListAdapter {
         }
     }
 
-    public void notifyAdapter(List<Video> videoList) {
-        this.videoList = videoList;
-        this.notifyDataSetChanged();
-    }
+
 
 
 }
