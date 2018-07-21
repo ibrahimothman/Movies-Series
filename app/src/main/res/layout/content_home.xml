@@ -10,7 +10,8 @@
     tools:showIn="@layout/app_bar_home">
 
 
-    <include layout="@layout/view_pager"/>
+    <include layout="@layout/view_pager"
+        android:id="@+id/view_pager"/>
 
 
 

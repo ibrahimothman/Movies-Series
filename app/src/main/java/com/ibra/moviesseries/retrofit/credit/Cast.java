@@ -4,8 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Cast {
 
-    @SerializedName("cast_id")
-    private int castId;
+
 
     @SerializedName("character")
     private String character;
@@ -19,13 +18,6 @@ public class Cast {
     private String profilePath;
 
 
-    public int getCastId() {
-        return castId;
-    }
-
-    public void setCastId(int castId) {
-        this.castId = castId;
-    }
 
     public String getCharacter() {
         return character;

@@ -2,6 +2,10 @@ package com.ibra.moviesseries.ui;
 
 
 import android.content.Intent;
+import android.print.PrinterId;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,9 +20,14 @@ import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.adapter.CastAdapter;
 import com.ibra.moviesseries.adapter.CrewAdapter;
 import com.ibra.moviesseries.adapter.VideoAdapter;
+import com.ibra.moviesseries.adapter.ViewPagerAdapter;
 import com.ibra.moviesseries.data.Constant;
 import com.ibra.moviesseries.data.api.ApiClinet;
 import com.ibra.moviesseries.data.api.ApiInterface;
+import com.ibra.moviesseries.fragment.CastFragment;
+import com.ibra.moviesseries.fragment.InfoFragment;
+import com.ibra.moviesseries.fragment.SimilarFragment;
+import com.ibra.moviesseries.fragment.VideoFragment;
 import com.ibra.moviesseries.retrofit.credit.Cast;
 import com.ibra.moviesseries.retrofit.credit.Credit;
 import com.ibra.moviesseries.retrofit.credit.Crew;
@@ -39,37 +48,22 @@ public class DetailActivity extends AppCompatActivity {
     private static final String TAG = DetailActivity.class.getSimpleName();
 
 
-    @BindView(R.id.title_detail)
-    TextView mTitleText;
-    @BindView(R.id.genre_detail)
-    TextView mGenreText;
-    @BindView(R.id.release_date_detail)
-    TextView mDateText;
-    @BindView(R.id.duration_detail)
-    TextView mDurationText;
-    @BindView(R.id.rate_detail)
-    TextView mRateText;
-    @BindView(R.id.overview_detail)
-    TextView mOverviewText;
-    @BindView(R.id.cast_list)
-    RecyclerView mCastList;
-    @BindView(R.id.crew_list)
-    RecyclerView mCrewList;
+
+    @BindView(R.id.tablayout)
+    TabLayout mTabLayout;
+    @BindView(R.id.view_pager)
+    ViewPager mViewPager;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
 
-    @BindView(R.id.image_detail)
-    ImageView mPosterImage;
+    public Show show;
+    public String type;
 
+    private Fragment[]fragments = {new InfoFragment(),new CastFragment(),new VideoFragment(),new SimilarFragment()};
+    private String[]tabNames = {"INFO","CAST","VIDEOS","SIMILAR"};
 
-    private Show show;
-    private String type;
-
-    private Credit credit;
-    private LinearLayoutManager linearLayoutManager;
-    private CastAdapter castAdapter;
-    private CrewAdapter crewAdapter;
+    private ViewPagerAdapter mViewPagerAdapter;
 
 
     @Override
@@ -90,74 +84,17 @@ public class DetailActivity extends AppCompatActivity {
         // setup toolbar
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(show.getTitle());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
-        loadCredit();
-
-    }
-
-    private void loadCredit() {
-        Call<Credit> call = ApiClinet.getApiClient().create(ApiInterface.class).getCridit(type,show.getMovieId());
-        call.enqueue(new Callback<Credit>() {
-            @Override
-            public void onResponse(Call<Credit> call, Response<Credit> response) {
-               credit =  response.body();
-               updateUi();
-
-            }
-
-            @Override
-            public void onFailure(Call<Credit> call, Throwable t) {
-                Log.d(TAG,"error "+t.getLocalizedMessage());
-            }
-        });
-    }
-
-    private void updateUi() {
-        mTitleText.setText(show.getTitle());
-        mGenreText.setText(getGenres());
-        mDurationText.setText(credit.getDuration()+" mins");
-        mDateText.setText(show.getReleaseDate()+",");
-        mRateText.setText(show.getMovieVoteAverage()+"/10");
-        Picasso.with(this).load(Constant.BASE_URL_IMAGE+"w185/"+show.getMoviePoster())
-                .into(mPosterImage);
-        mOverviewText.setText(show.getMovieOverview());
-
-        
-        setupCastList();
-        setupCrewList();
-
+        // setup viewpager
+        mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),fragments,tabNames,type);
+        mViewPager.setAdapter(mViewPagerAdapter);
+        mTabLayout.setupWithViewPager(mViewPager);
 
 
 
     }
 
-    private void setupCrewList() {
-        linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        mCrewList.setLayoutManager(linearLayoutManager);
-        crewAdapter = new CrewAdapter(this,credit.getCastCrewList().getCrewList());
-        mCrewList.setAdapter(crewAdapter);
-    }
-
-    private void setupCastList() {
-        linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        mCastList.setLayoutManager(linearLayoutManager);
-        castAdapter = new CastAdapter(this,credit.getCastCrewList().getCastList());
-        mCastList.setAdapter(castAdapter);
-    }
-
-    private String getGenres() {
-        List<Genre> genreList = credit.getGenres();
-        StringBuilder builder = new StringBuilder();
-        for(Genre genre : genreList){
-            builder.append(genre.getName()+" | ");
-        }
-        if(builder.charAt(builder.length()-2) == '|'){
-            builder.delete(builder.length()-3,builder.length()-1);
-        }
-        return builder.toString();
-    }
 
 
 }

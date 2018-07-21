@@ -4,8 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Crew {
 
-    @SerializedName("credit_id")
-    private String creditId;
 
     @SerializedName("department")
     private String department;
@@ -19,13 +17,6 @@ public class Crew {
     @SerializedName("profile_path")
     private String profilePath;
 
-    public String getCreditId() {
-        return creditId;
-    }
-
-    public void setCreditId(String creditId) {
-        this.creditId = creditId;
-    }
 
     public String getDepartment() {
         return department;

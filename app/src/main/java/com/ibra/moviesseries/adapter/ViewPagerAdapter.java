@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.text.TextUtils;
 import android.util.Log;
 
 import butterknife.ButterKnife;
@@ -13,14 +14,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
 
     private static final String SHOW_TYPE = "TYPE";
-    private static final CharSequence TOP_RATED = "TOP RATED";
-    private static final CharSequence UPCOMING = "UPCOMING";
-    private static final CharSequence NOW_PALYING = "NOW PLAYING";
-    private static final CharSequence POPULAR = "POPULAR";
-    private static final CharSequence ON_THE_AIR = "ON THE AIR";
-    private static final CharSequence AIRING_TODAY = "AIRING TODAY";
-
-
 
     private Fragment[] fragments;
     private String type;
@@ -44,9 +37,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Bundle bundle = new Bundle();
-        bundle.putString(SHOW_TYPE,type);
-        fragments[position].setArguments(bundle);
+        if(!TextUtils.isEmpty(type)) {
+            Bundle bundle = new Bundle();
+            bundle.putString(SHOW_TYPE, type);
+            fragments[position].setArguments(bundle);
+        }
         Log.d("fromPagerAdapter","type is "+type);
         return fragments[position];
     }

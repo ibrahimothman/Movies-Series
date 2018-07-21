@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="10dp"
+    >
+
+
+    <android.support.v7.widget.CardView xmlns:cardview="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardview_id"
+        android:layout_width="110dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        cardview:cardCornerRadius="4dp"
+        cardview:layout_constraintStart_toStartOf="parent"
+        >
+
+        <ImageView
+            android:id="@+id/image_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#2d2d2d" />
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/title_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/title_size"
+        app:layout_constraintStart_toEndOf="@+id/cardview_id"
+        tools:text="Ready Player One" />
+
+    <TextView
+        android:id="@+id/genre_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
+        android:textSize="@dimen/normal_size"
+        app:layout_constraintStart_toEndOf="@+id/cardview_id"
+        app:layout_constraintTop_toBottomOf="@+id/title_detail"
+        tools:text="Horror | Drama | Action" />
+
+    <TextView
+        android:id="@+id/release_date_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="8dp"
+        android:textSize="@dimen/normal_size"
+        app:layout_constraintStart_toStartOf="@id/genre_detail"
+        app:layout_constraintTop_toBottomOf="@+id/genre_detail"
+        tools:text="2018," />
+
+
+    <TextView
+        android:id="@+id/duration_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="@dimen/normal_size"
+        app:layout_constraintStart_toEndOf="@+id/release_date_detail"
+        app:layout_constraintTop_toBottomOf="@+id/genre_detail"
+        tools:text="120 mins" />
+
+    <TextView
+        android:id="@+id/rate_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="8dp"
+        android:textSize="@dimen/normal_size"
+        app:layout_constraintStart_toStartOf="@+id/release_date_detail"
+        app:layout_constraintTop_toBottomOf="@+id/release_date_detail"
+        tools:text="5.5/10" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="15dp"
+        android:text="Watchlist"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/title_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardview_id" />
+
+    <ImageButton
+        android:id="@+id/add_to_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="10dp"
+        android:background="@null"
+        android:src="@drawable/ic_playlist_add_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/overview_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:textSize="@dimen/normal_size"
+        app:layout_constraintEnd_toEndOf="@id/textView"
+        app:layout_constraintStart_toStartOf="@+id/cardview_id"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:text="" />
+
+</android.support.constraint.ConstraintLayout>
