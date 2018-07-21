@@ -117,15 +117,27 @@ public class DetailActivity extends AppCompatActivity {
     private void updateUi() {
         mTitleText.setText(show.getTitle());
         mGenreText.setText(getGenres());
-        mDurationText.setText(credit.getDuration() + " mins");
-        mDateText.setText(show.getReleaseDate() + ",");
-        mRateText.setText(show.getMovieVoteAverage() + "/10");
-        Picasso.with(this).load(Constant.BASE_URL_IMAGE + "w185/" + show.getMoviePoster())
+        mDurationText.setText(credit.getDuration()+" mins");
+        mDateText.setText(show.getReleaseDate()+",");
+        mRateText.setText(show.getMovieVoteAverage()+"/10");
+        Picasso.with(this).load(Constant.BASE_URL_IMAGE+"w185/"+show.getMoviePoster())
                 .into(mPosterImage);
         mOverviewText.setText(show.getMovieOverview());
 
-        // setup castRecyclerview
+        
         setupCastList();
+        setupCrewList();
+
+
+
+
+    }
+
+    private void setupCrewList() {
+        linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        mCrewList.setLayoutManager(linearLayoutManager);
+        crewAdapter = new CrewAdapter(this,credit.getCastCrewList().getCrewList());
+        mCrewList.setAdapter(crewAdapter);
     }
 
     private void setupCastList() {
