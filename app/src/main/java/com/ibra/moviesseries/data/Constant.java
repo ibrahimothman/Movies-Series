@@ -2,7 +2,7 @@ package com.ibra.moviesseries.data;
 
 public class Constant {
 
-    public static final String NOW_PALYING = "now_palying";
+    public static final String NOW_PALYING = "now_playing";
     public static final String UPCOMING = "upcoming";
     public static final String TOP_RATED = "top_rated";
     public static final String POPULAR = "popular";
