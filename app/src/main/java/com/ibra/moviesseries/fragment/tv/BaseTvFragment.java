@@ -25,6 +25,11 @@ public abstract class BaseTvFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+
+
         Call<TvList> call = getData();
         call.enqueue(new Callback<TvList>() {
             @Override
@@ -45,8 +50,5 @@ public abstract class BaseTvFragment extends BaseFragment {
 
     protected abstract Call<TvList> getData();
 
-    @Override
-    protected RecyclerView.Adapter getAdapter(Context mContext) {
-        return new TvAdapter(mContext,tvList);
-    }
+
 }
