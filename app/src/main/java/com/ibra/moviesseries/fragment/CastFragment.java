@@ -33,5 +33,44 @@ import retrofit2.Response;
 
 public class CastFragment extends BaseFragment {
 
+    private static final String TAG = CastFragment.class.getSimpleName();
+    private CastAdapter castAdapter;
+    private List<Cast> castList;
+    private Movie movie;
 
+    public CastFragment() {
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        castAdapter = new CastAdapter(getContext(),castList);
+
+
+
+    }
+
+    @Subscribe
+    public void getMovieCast(Event event){
+        castList = event.getCastList();
+        castAdapter.notifyAdapter(castList);
+    }
+
+
+    @Override
+    protected RecyclerView.Adapter getAdapter(Context mContext) {
+        return castAdapter;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
 }
