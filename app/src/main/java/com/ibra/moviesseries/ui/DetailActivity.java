@@ -2,46 +2,22 @@ package com.ibra.moviesseries.ui;
 
 
 import android.content.Intent;
-import android.print.PrinterId;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-
 import com.ibra.moviesseries.R;
-import com.ibra.moviesseries.adapter.CastAdapter;
-import com.ibra.moviesseries.adapter.CrewAdapter;
-import com.ibra.moviesseries.adapter.VideoAdapter;
 import com.ibra.moviesseries.adapter.ViewPagerAdapter;
-import com.ibra.moviesseries.data.Constant;
-import com.ibra.moviesseries.data.api.ApiClinet;
-import com.ibra.moviesseries.data.api.ApiInterface;
 import com.ibra.moviesseries.fragment.CastFragment;
 import com.ibra.moviesseries.fragment.InfoFragment;
 import com.ibra.moviesseries.fragment.SimilarFragment;
 import com.ibra.moviesseries.fragment.VideoFragment;
-import com.ibra.moviesseries.retrofit.credit.Cast;
-import com.ibra.moviesseries.retrofit.credit.Credit;
-import com.ibra.moviesseries.retrofit.credit.Crew;
-import com.ibra.moviesseries.retrofit.genre.Genre;
 import com.ibra.moviesseries.retrofit.show.Show;
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
 
 public class DetailActivity extends AppCompatActivity {
 

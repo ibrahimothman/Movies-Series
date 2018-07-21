@@ -38,6 +38,7 @@ public class SimilarFragment extends BaseDetailFragment {
         View view = inflater.inflate(R.layout.list,container,false);
         ButterKnife.bind(this,view);
         loadData();
+
         return view;
     }
 
@@ -45,7 +46,7 @@ public class SimilarFragment extends BaseDetailFragment {
     protected void updateUi() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),numberOfColumns());
         mList.setLayoutManager(gridLayoutManager);
-        mSimilarAdapter = new SimilarAdapter(getContext(),credit.getSimilarList().getShowList());
+        mSimilarAdapter = new SimilarAdapter(getContext(),credit.getSimilarList().getShowList(),type);
         mList.setAdapter(mSimilarAdapter);
     }
 }
