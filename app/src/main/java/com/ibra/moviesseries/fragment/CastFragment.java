@@ -30,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CastFragment extends BaseFragment {
+public class CastFragment extends BaseDetailFragment {
 
     private static final String TAG = CastFragment.class.getSimpleName();
     @BindView(R.id.list)
@@ -42,12 +42,11 @@ public class CastFragment extends BaseFragment {
     private CastAdapter mCastAdapter;
     private List<Cast> castList;
 
-    private String type;
-    private Show show;
-    private Credit credit;
 
     public CastFragment() {
     }
+
+
 
     @Nullable
     @Override
@@ -55,38 +54,21 @@ public class CastFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.list,container,false);
         ButterKnife.bind(this,view);
 
-        // get type (movie or tv) and show
-        if(getActivity() != null){
-            show = ((DetailActivity)getActivity()).show;
-            type = ((DetailActivity)getActivity()).type;
-        }
-
         loadData();
 
         return view;
     }
 
-    private void loadData() {
-        Call<Credit> call = ApiClinet.getApiClient().create(ApiInterface.class).getCridit(type,show.getMovieId());
-        call.enqueue(new Callback<Credit>() {
-            @Override
-            public void onResponse(Call<Credit> call, Response<Credit> response) {
-                credit =  response.body();
-                updateUi();
 
-            }
-
-            @Override
-            public void onFailure(Call<Credit> call, Throwable t) {
-                Log.d(TAG,"error "+t.getLocalizedMessage());
-            }
-        });
-    }
-
-    private void updateUi() {
+    @Override
+    protected void updateUi() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),numberOfColumns());
         mList.setLayoutManager(gridLayoutManager);
         mCastAdapter = new CastAdapter(getContext(),credit.getCastCrewList().getCastList());
         mList.setAdapter(mCastAdapter);
     }
+
+
+
+
 }

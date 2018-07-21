@@ -20,11 +20,11 @@ import butterknife.ButterKnife;
 public class VideoFragment extends Fragment {
 
     private static final String TAG = VideoFragment.class.getSimpleName();
-    @BindView(R.id.list)
-    RecyclerView mList;
-    @BindView(R.id.progress_bar)
-    ProgressBar mProgressBar;
-    private Show show;
+//    @BindView(R.id.list)
+//    RecyclerView mList;
+//    @BindView(R.id.progress_bar)
+//    ProgressBar mProgressBar;
+//    private Show show;
 
     public VideoFragment() {
     }
@@ -33,15 +33,9 @@ public class VideoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.info_fragment,container,false);
-        ButterKnife.bind(this,view);
+//        ButterKnife.bind(this,view);
 
-        // get type (movie or tv) and show
-        if(getActivity() != null){
-            show = ((DetailActivity)getActivity()).show;
-            type = ((DetailActivity)getActivity()).type;
-        }
 
-        loadData();
 
 
         return view;

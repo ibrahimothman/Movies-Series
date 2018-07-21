@@ -15,7 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public abstract class BaseDetailFragment extends Fragment {
+public abstract class BaseDetailFragment extends BaseFragment {
 
     public Show show;
     public String type;
