@@ -1,11 +1,8 @@
 package com.ibra.moviesseries.fragment.movie;
 
-import android.content.Context;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,8 +15,8 @@ import android.widget.ProgressBar;
 import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.adapter.MovieAdapter;
 import com.ibra.moviesseries.fragment.BaseFragment;
-import com.ibra.moviesseries.retrofit.movie.Movie;
-import com.ibra.moviesseries.retrofit.movie.MovieList;
+import com.ibra.moviesseries.retrofit.show.Show;
+import com.ibra.moviesseries.retrofit.show.ShowList;
 
 import java.util.List;
 
@@ -32,7 +29,7 @@ import retrofit2.Response;
 public abstract class BaseMovieFragment extends BaseFragment {
 
     private static final String TAG = BaseMovieFragment.class.getSimpleName();
-    private List<Movie> movieList;
+    private List<Show> movieList;
     private MovieAdapter movieAdapter;
 
 
@@ -64,19 +61,19 @@ public abstract class BaseMovieFragment extends BaseFragment {
 
     public void loadData(){
         mProgressBar.setVisibility(View.VISIBLE);
-        Call<MovieList> call = getData();
-        call.enqueue(new Callback<MovieList>() {
+        Call<ShowList> call = getData();
+        call.enqueue(new Callback<ShowList>() {
             @Override
-            public void onResponse(Call<MovieList> call, Response<MovieList> response) {
+            public void onResponse(Call<ShowList> call, Response<ShowList> response) {
                 if(response.isSuccessful() && response.body() != null){
                     mProgressBar.setVisibility(View.INVISIBLE);
-                    movieList = response.body().getMovieList();
+                    movieList = response.body().getShowList();
                     movieAdapter.notifyAdapter(movieList);
                 }
             }
 
             @Override
-            public void onFailure(Call<MovieList> call, Throwable t) {
+            public void onFailure(Call<ShowList> call, Throwable t) {
                 Log.d(TAG,"error is "+t.getLocalizedMessage());
             }
         });
@@ -84,7 +81,7 @@ public abstract class BaseMovieFragment extends BaseFragment {
 
 
 
-    protected abstract Call<MovieList> getData();
+    protected abstract Call<ShowList> getData();
 
 
 }

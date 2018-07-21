@@ -2,8 +2,7 @@ package com.ibra.moviesseries.data.api;
 
 import com.ibra.moviesseries.data.Constant;
 import com.ibra.moviesseries.retrofit.credit.Credit;
-import com.ibra.moviesseries.retrofit.movie.MovieList;
-import com.ibra.moviesseries.retrofit.tv.TvList;
+import com.ibra.moviesseries.retrofit.show.ShowList;
 import com.ibra.moviesseries.retrofit.video.VideoList;
 
 import retrofit2.Call;
@@ -15,10 +14,10 @@ public interface ApiInterface {
 
 
     @GET(Constant.LOAD_MOVIES)
-    public Call<MovieList> getMovies(@Path("cat") String category);
+    public Call<ShowList> getMovies(@Path("cat") String category);
 
     @GET(Constant.LOAD_TVS)
-    public Call<TvList> getTvShows(@Path("cat") String category);
+    public Call<ShowList> getTvShows(@Path("cat") String category);
 
 
     @GET(Constant.MOVIE_CRIDIT)

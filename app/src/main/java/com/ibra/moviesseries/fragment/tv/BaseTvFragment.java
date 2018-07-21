@@ -1,6 +1,5 @@
 package com.ibra.moviesseries.fragment.tv;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,12 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.ibra.moviesseries.R;
-import com.ibra.moviesseries.adapter.MovieAdapter;
 import com.ibra.moviesseries.adapter.TvAdapter;
 import com.ibra.moviesseries.fragment.BaseFragment;
-import com.ibra.moviesseries.retrofit.movie.MovieList;
-import com.ibra.moviesseries.retrofit.tv.Tv;
-import com.ibra.moviesseries.retrofit.tv.TvList;
+import com.ibra.moviesseries.retrofit.show.Show;
+import com.ibra.moviesseries.retrofit.show.ShowList;
 
 import java.util.List;
 
@@ -31,7 +28,7 @@ import retrofit2.Response;
 public abstract class BaseTvFragment extends BaseFragment {
 
     private static final String TAG = BaseTvFragment.class.getSimpleName();
-    private List<Tv> tvList;
+    private List<Show> tvList;
     private TvAdapter tvAdapter;
 
     @BindView(R.id.list) RecyclerView list;
@@ -63,25 +60,25 @@ public abstract class BaseTvFragment extends BaseFragment {
 
     public void loadData(){
         mProgressBar.setVisibility(View.VISIBLE);
-        Call<TvList> call = getData();
-        call.enqueue(new Callback<TvList>() {
+        Call<ShowList> call = getData();
+        call.enqueue(new Callback<ShowList>() {
             @Override
-            public void onResponse(Call<TvList> call, Response<TvList> response) {
+            public void onResponse(Call<ShowList> call, Response<ShowList> response) {
                 if(response.isSuccessful() && response.body() != null){
                     mProgressBar.setVisibility(View.INVISIBLE);
-                    tvList = response.body().getTvList();
+                    tvList = response.body().getShowList();
                     tvAdapter.notifyAdapter(tvList);
                 }
             }
 
             @Override
-            public void onFailure(Call<TvList> call, Throwable t) {
+            public void onFailure(Call<ShowList> call, Throwable t) {
                 Log.d(TAG,"error is "+t.getLocalizedMessage());
             }
         });
     }
 
-    protected abstract Call<TvList> getData();
+    protected abstract Call<ShowList> getData();
 
 
 }

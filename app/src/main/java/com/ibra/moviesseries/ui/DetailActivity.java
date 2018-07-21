@@ -2,7 +2,6 @@ package com.ibra.moviesseries.ui;
 
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -12,11 +11,10 @@ import android.widget.TextView;
 
 
 import com.ibra.moviesseries.R;
-import com.ibra.moviesseries.retrofit.movie.Movie;
+import com.ibra.moviesseries.retrofit.show.Show;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Optional;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -47,7 +45,7 @@ public class DetailActivity extends AppCompatActivity {
     ImageView mPosterImage;
 
 
-    public Movie movie;
+    public Show movie;
 
 
     @Override
@@ -66,7 +64,7 @@ public class DetailActivity extends AppCompatActivity {
 
         // setup toolbar
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle(movie.getMovieTitle());
+        getSupportActionBar().setTitle(movie.getTitle());
 
         updateUi();
 
@@ -76,7 +74,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void updateUi() {
-        mTitleText.setText(movie.getMovieTitle());
+        mTitleText.setText(movie.getTitle());
 
     }
 
