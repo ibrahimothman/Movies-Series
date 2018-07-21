@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".ui.DetailActivity">
+
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true">
+
 
     <include layout="@layout/toolbar"
         android:id="@+id/toolbar"/>
@@ -163,8 +170,10 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/cast_list"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
         android:id="@+id/crew_list"/>
 
 
 </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

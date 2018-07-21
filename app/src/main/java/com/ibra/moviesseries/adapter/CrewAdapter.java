@@ -1,24 +1,25 @@
 package com.ibra.moviesseries.adapter;
 
+
 import android.content.Context;
 import android.view.View;
 
 import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.data.Constant;
 import com.ibra.moviesseries.retrofit.credit.Cast;
+import com.ibra.moviesseries.retrofit.credit.Crew;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class CastAdapter extends ListAdapter {
-
+public class CrewAdapter extends ListAdapter {
     private Context mContext;
-    private List<Cast> castList;
+    private List<Crew> crewList;
 
-    public CastAdapter(Context mContext,List<Cast> castList) {
+    public CrewAdapter(Context mContext,List<Crew> crewList) {
         super(mContext);
         this.mContext = mContext;
-        this.castList = castList;
+        this.crewList = crewList;
     }
 
 
@@ -26,9 +27,9 @@ public class CastAdapter extends ListAdapter {
 
     @Override
     protected void bindViews(ListHolder listHolder, Context mContext, int position) {
-        String posterUrl = castList.get(position).getProfilePath();
+        String posterUrl = crewList.get(position).getProfilePath();
         String posterFullUrl = Constant.BASE_URL_IMAGE+"w185/"+posterUrl;
-        String title = castList.get(position).getName();
+        String title = crewList.get(position).getName();
 
         // update list ui
         Picasso.with(mContext).load(posterFullUrl)
@@ -37,19 +38,16 @@ public class CastAdapter extends ListAdapter {
                 .into(listHolder.Image);
         listHolder.title.setText(title);
         listHolder.job.setVisibility(View.VISIBLE);
-        listHolder.job.setText(castList.get(position).getCharacter());
+        listHolder.job.setText(crewList.get(position).getDepartment());
     }
 
     @Override
     public int getItemCount() {
-        if(castList != null) return castList.size();
+        if(crewList != null) return crewList.size();
         else return 0;
     }
 
-    public void notifyAdapter(List<Cast> castList){
-        this.castList = castList;
-        this.notifyDataSetChanged();
-    }
+
 
     @Override
     protected void onViewClicked(int position) {

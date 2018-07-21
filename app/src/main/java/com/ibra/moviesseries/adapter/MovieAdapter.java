@@ -2,6 +2,7 @@ package com.ibra.moviesseries.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 
 import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.data.Constant;
@@ -36,6 +37,7 @@ public  class MovieAdapter extends ListAdapter  {
                 .centerCrop()
                 .into(listHolder.Image);
         listHolder.title.setText(title);
+        listHolder.job.setVisibility(View.GONE);
     }
 
     public void notifyAdapter(List<Show> movieList){

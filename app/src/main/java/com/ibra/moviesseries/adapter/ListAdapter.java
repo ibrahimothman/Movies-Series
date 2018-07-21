@@ -51,10 +51,11 @@ public abstract class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListH
         @BindView(R.id.image)ImageView Image;
         @BindView(R.id.title)TextView title;
         @BindView(R.id.play)ImageView playImage;
+        @BindView(R.id.job)TextView job;
         public ListHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
-            playImage.setVisibility(View.GONE);
+
         }
     }
 }

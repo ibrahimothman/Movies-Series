@@ -4,6 +4,7 @@ package com.ibra.moviesseries.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,6 +13,9 @@ import android.widget.TextView;
 
 
 import com.ibra.moviesseries.R;
+import com.ibra.moviesseries.adapter.CastAdapter;
+import com.ibra.moviesseries.adapter.CrewAdapter;
+import com.ibra.moviesseries.adapter.VideoAdapter;
 import com.ibra.moviesseries.data.Constant;
 import com.ibra.moviesseries.data.api.ApiClinet;
 import com.ibra.moviesseries.data.api.ApiInterface;
@@ -63,6 +67,9 @@ public class DetailActivity extends AppCompatActivity {
     private String type;
 
     private Credit credit;
+    private LinearLayoutManager linearLayoutManager;
+    private CastAdapter castAdapter;
+    private CrewAdapter crewAdapter;
 
 
     @Override
@@ -83,6 +90,8 @@ public class DetailActivity extends AppCompatActivity {
         // setup toolbar
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(show.getTitle());
+
+
 
         loadCredit();
 
@@ -108,13 +117,22 @@ public class DetailActivity extends AppCompatActivity {
     private void updateUi() {
         mTitleText.setText(show.getTitle());
         mGenreText.setText(getGenres());
-        mDurationText.setText(credit.getDuration()+" mins");
-        mDateText.setText(show.getReleaseDate()+",");
-        mRateText.setText(show.getMovieVoteAverage()+"/10");
-        Picasso.with(this).load(Constant.BASE_URL_IMAGE+"w185/"+show.getMoviePoster())
+        mDurationText.setText(credit.getDuration() + " mins");
+        mDateText.setText(show.getReleaseDate() + ",");
+        mRateText.setText(show.getMovieVoteAverage() + "/10");
+        Picasso.with(this).load(Constant.BASE_URL_IMAGE + "w185/" + show.getMoviePoster())
                 .into(mPosterImage);
         mOverviewText.setText(show.getMovieOverview());
 
+        // setup castRecyclerview
+        setupCastList();
+    }
+
+    private void setupCastList() {
+        linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        mCastList.setLayoutManager(linearLayoutManager);
+        castAdapter = new CastAdapter(this,credit.getCastCrewList().getCastList());
+        mCastList.setAdapter(castAdapter);
     }
 
     private String getGenres() {
