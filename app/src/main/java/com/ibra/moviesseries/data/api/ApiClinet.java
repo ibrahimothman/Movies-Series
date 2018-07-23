@@ -5,7 +5,7 @@ import android.util.Log;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.ibra.moviesseries.data.Constant.BASE_URL;
+import static com.ibra.moviesseries.data.Contract.BASE_URL;
 
 public class ApiClinet {
 

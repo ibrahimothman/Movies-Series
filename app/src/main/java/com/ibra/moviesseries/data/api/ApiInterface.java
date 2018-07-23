@@ -1,6 +1,6 @@
 package com.ibra.moviesseries.data.api;
 
-import com.ibra.moviesseries.data.Constant;
+import com.ibra.moviesseries.data.Contract;
 import com.ibra.moviesseries.retrofit.credit.Credit;
 import com.ibra.moviesseries.retrofit.show.ShowList;
 import com.ibra.moviesseries.retrofit.video.VideoList;
@@ -13,18 +13,18 @@ public interface ApiInterface {
 
 
 
-    @GET(Constant.LOAD_MOVIES)
+    @GET(Contract.LOAD_MOVIES)
     public Call<ShowList> getMovies(@Path("cat") String category);
 
-    @GET(Constant.LOAD_TVS)
+    @GET(Contract.LOAD_TVS)
     public Call<ShowList> getTvShows(@Path("cat") String category);
 
 
-    @GET(Constant.CRIDIT)
+    @GET(Contract.CRIDIT)
     public Call<Credit> getCridit(@Path("type") String type, @Path("id") int id);
 
 
-    @GET(Constant.VIDEO)
+    @GET(Contract.VIDEO)
     public Call<VideoList> getVideos(@Path("type") String type, @Path("id") int id);
 
 

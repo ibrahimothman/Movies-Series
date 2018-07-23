@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.ibra.moviesseries.R;
-import com.ibra.moviesseries.data.Constant;
+import com.ibra.moviesseries.data.Contract;
 import com.ibra.moviesseries.retrofit.credit.Cast;
 import com.squareup.picasso.Picasso;
 
@@ -27,7 +27,7 @@ public class CastAdapter extends ListAdapter {
     @Override
     protected void bindViews(ListHolder listHolder, Context mContext, int position) {
         String posterUrl = castList.get(position).getProfilePath();
-        String posterFullUrl = Constant.BASE_URL_IMAGE+"w185/"+posterUrl;
+        String posterFullUrl = Contract.BASE_URL_IMAGE+"w185/"+posterUrl;
         String title = castList.get(position).getName();
 
         // update list ui
