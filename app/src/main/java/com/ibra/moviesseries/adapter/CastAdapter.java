@@ -19,6 +19,7 @@ public class CastAdapter extends ListAdapter {
         super(mContext);
         this.mContext = mContext;
         this.castList = castList;
+        // hgjhghjghghjghjgjhghj
     }
 
 
