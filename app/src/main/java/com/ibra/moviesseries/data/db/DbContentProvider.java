@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
 import com.ibra.moviesseries.data.Contract;
 
@@ -79,6 +80,7 @@ public class DbContentProvider extends ContentProvider {
                 long id = db.insert(Contract.FavEntry.TABLE_NAME,null,values);
                 if(id >0){
                     mUri = ContentUris.withAppendedId(Contract.FavEntry.CONTENT_URI,id);
+                    Toast.makeText(getContext(), "successfully added to watchlist", Toast.LENGTH_LONG).show();
                 }else{
                     throw new SQLException("insert failde");
                 }

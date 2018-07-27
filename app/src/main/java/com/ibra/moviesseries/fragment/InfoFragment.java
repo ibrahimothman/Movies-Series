@@ -124,9 +124,8 @@ public class InfoFragment extends BaseDetailFragment {
         Cursor cursor = getContext().getContentResolver()
                 .query(uri,null,null,null,null);
 
-        if(cursor != null){
+        if(cursor.getCount() != 0){
             // show has already existed
-            cursor.close();
             return true;
 
         }

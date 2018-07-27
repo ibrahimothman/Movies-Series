@@ -1,7 +1,9 @@
 package com.ibra.moviesseries.ui;
 
 import android.content.ContentUris;
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -59,7 +61,8 @@ public class FavouriteActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(getString(R.string.fav_activity_title));
+        getSupportActionBar().setTitle(getString(R.string.fav_activity_title));
+        toolbar.setTitleTextColor(Color.WHITE);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -138,7 +141,13 @@ public class FavouriteActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+         if(id == R.id.nav_movies){
+             Intent movieIntent = new Intent(this,HomeActivity.class);
+             startActivity(movieIntent);
+         }else if(id == R.id.nav_tvshow){
+             Intent SeriesIntent = new Intent(this,SeriesActivity.class);
+             startActivity(SeriesIntent);
+         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -148,7 +157,7 @@ public class FavouriteActivity extends AppCompatActivity
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        return new CursorLoader(this, Contract.FavEntry.CONTENT_URI,null,null,null,null);
+        return new CursorLoader(this, Contract.FavEntry.CONTENT_URI,null,null,null, Contract.FavEntry.TIME);
     }
 
     @Override

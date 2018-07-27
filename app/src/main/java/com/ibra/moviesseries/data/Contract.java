@@ -34,7 +34,8 @@ public class Contract {
         public static final String OVERVIEW_COL = "fav_overview";
         public static final String RELEASE_DATE_COL = "fav_release_date";
         public static final String TRAILER_COL = "fav_trailr";
-        public static final String POSTER_COL = "fav_movie_poster";
+        public static final String POSTER_COL = "fav_poster";
+        public static final String TIME = "fav_time";
 
     }
 

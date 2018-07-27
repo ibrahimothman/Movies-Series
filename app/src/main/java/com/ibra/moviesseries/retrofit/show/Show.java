@@ -36,7 +36,8 @@ public class Show implements Parcelable {
     private String releaseDate;
 
 
-
+    public Show() {
+    }
 
     protected Show(Parcel in) {
         movieId = in.readInt();
