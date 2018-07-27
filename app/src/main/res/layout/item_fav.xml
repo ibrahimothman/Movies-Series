@@ -24,9 +24,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/title_size"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/poster_fav"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Wind River" />
@@ -36,8 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:textSize="@dimen/normal_size"
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/poster_fav"
         app:layout_constraintTop_toTopOf="@+id/title_fav"
         tools:text="Released on : 03 Aug 2017" />
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="33dp"
-        android:textSize="@dimen/normal_size"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageview"
         app:layout_constraintTop_toTopOf="@+id/release_date_fav"
         tools:text="7.5/10" />

@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 
 import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.adapter.FavouriteAdapter;
@@ -39,6 +40,8 @@ public class FavouriteActivity extends AppCompatActivity
     private static final int FAV_LOADER = 2;
     @BindView(R.id.fav_list)
     RecyclerView mRecyclerView;
+    @BindView(R.id.progress_bar_fav)
+    ProgressBar mProgressBar;
 
     RecyclerView.LayoutManager layoutManager;
     FavouriteAdapter favouriteAdapter;
@@ -131,6 +134,7 @@ public class FavouriteActivity extends AppCompatActivity
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
         if(data != null){
+            mProgressBar.setVisibility(View.INVISIBLE);
             favouriteAdapter.swipCursor(data);
         }
     }
