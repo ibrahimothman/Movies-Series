@@ -141,13 +141,13 @@ public class FavouriteActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-         if(id == R.id.nav_movies){
-             Intent movieIntent = new Intent(this,HomeActivity.class);
-             startActivity(movieIntent);
-         }else if(id == R.id.nav_tvshow){
-             Intent SeriesIntent = new Intent(this,SeriesActivity.class);
-             startActivity(SeriesIntent);
-         }
+        if(id == R.id.nav_movies){
+            Intent movieIntent = new Intent(this,HomeActivity.class);
+            startActivity(movieIntent);
+        }else if(id == R.id.nav_tvshow){
+            Intent SeriesIntent = new Intent(this,SeriesActivity.class);
+            startActivity(SeriesIntent);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

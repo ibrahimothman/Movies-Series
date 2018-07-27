@@ -23,4 +23,6 @@
     <string name="movies_activity">Movies</string>
     <string name="title_activity_favourite">FavouriteActivity</string>
     <string name="fav_activity_title">Watchlist</string>
+    <string name="my_cart">My Cart</string>
+    <string name="delete">DELETE</string>
 </resources>

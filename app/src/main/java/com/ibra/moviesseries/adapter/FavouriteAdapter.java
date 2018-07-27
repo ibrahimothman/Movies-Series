@@ -36,7 +36,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.FavV
     @Override
     public FavViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new FavViewHolder(LayoutInflater.from(mContext)
-        .inflate(R.layout.item_fav,parent,false));
+                .inflate(R.layout.item_fav,parent,false));
     }
 
     @Override

@@ -47,6 +47,7 @@ public class Show implements Parcelable {
         movieBackDropPoster = in.readString();
         movieOverview = in.readString();
         releaseDate = in.readString();
+
     }
 
 
