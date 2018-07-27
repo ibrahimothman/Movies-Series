@@ -107,8 +107,9 @@ public class SeriesActivity extends AppCompatActivity
         if (id == R.id.nav_movies) {
             Intent movieIntent = new Intent(this,HomeActivity.class);
             startActivity(movieIntent);
-        } else if (id == R.id.nav_tvshow) {
-
+        } else if (id == R.id.nav_favourite) {
+            Intent favIntent = new Intent(this,FavouriteActivity.class);
+            startActivity(favIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
