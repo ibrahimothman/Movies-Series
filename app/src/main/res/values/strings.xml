@@ -21,4 +21,6 @@
     <string name="title_activity_series">SeriesActivity</string>
     <string name="tvshow_activity">TvShow</string>
     <string name="movies_activity">Movies</string>
+    <string name="title_activity_favourite">FavouriteActivity</string>
+    <string name="fav_activity_title">Watchlist</string>
 </resources>

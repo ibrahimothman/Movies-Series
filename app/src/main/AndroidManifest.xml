@@ -22,10 +22,16 @@
             android:name=".ui.SeriesActivity"
             android:label="@string/title_activity_series"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.DetailActivity"></activity>
+        <activity android:name=".ui.DetailActivity" />
+
         <provider
-            android:authorities="com.ibra.moviesseries"
-            android:name=".data.db.DbContentProvider"/>
+            android:name=".data.db.DbContentProvider"
+            android:authorities="com.ibra.moviesseries" />
+
+        <activity
+            android:name=".ui.FavouriteActivity"
+            android:label="@string/title_activity_favourite"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

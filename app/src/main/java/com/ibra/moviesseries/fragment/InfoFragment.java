@@ -1,15 +1,13 @@
 package com.ibra.moviesseries.fragment;
 
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.data.Contract;
@@ -28,7 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class InfoFragment extends BaseDetailFragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class InfoFragment extends BaseDetailFragment {
 
     private static final String TAG = InfoFragment.class.getSimpleName();
     private static final int LOADER_ID = 55;
@@ -67,11 +66,12 @@ public class InfoFragment extends BaseDetailFragment implements LoaderManager.Lo
         addToFavBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addToFavDb();
+                if(!isAlreadyExist()) {
+                    addToFavDb();
+                }else
+                    Toast.makeText(getContext(), "it's already added to watchlist", Toast.LENGTH_LONG).show();
             }
         });
-
-
 
 
         return view;
@@ -104,7 +104,7 @@ public class InfoFragment extends BaseDetailFragment implements LoaderManager.Lo
 
 
 
-
+    // insert new record to sqlite database
     private void addToFavDb() {
         ContentValues cv = new ContentValues();
         cv.put(Contract.FavEntry.TITLE_COL,show.getTitle());
@@ -115,29 +115,25 @@ public class InfoFragment extends BaseDetailFragment implements LoaderManager.Lo
         cv.put(Contract.FavEntry.RELEASE_DATE_COL,show.getReleaseDate());
         Uri uri = Contract.FavEntry.CONTENT_URI;
         getContext().getContentResolver().insert(uri,cv);
-        getLoaderManager().initLoader(3,null,this);
+
 
     }
 
+    private boolean isAlreadyExist(){
+        Uri uri = ContentUris.withAppendedId(Contract.FavEntry.CONTENT_URI,show.getMovieId());
+        Cursor cursor = getContext().getContentResolver()
+                .query(uri,null,null,null,null);
 
-    @NonNull
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        return new CursorLoader(getContext(), Contract.FavEntry.CONTENT_URI,null,null,null,null);
-    }
+        if(cursor != null){
+            // show has already existed
+            cursor.close();
+            return true;
 
-    @Override
-    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-        if(data != null && data.moveToFirst()){
-            do{
-                Log.d(TAG,"title is "+data.getString(1));
-            }
-            while (data.moveToNext());
+        }
+        else {
+            return false;
         }
     }
 
-    @Override
-    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
 
-    }
 }

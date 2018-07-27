@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 
 import com.ibra.moviesseries.data.Contract;
 
+@SuppressWarnings("ConstantConditions")
 public class DbContentProvider extends ContentProvider {
 
 
