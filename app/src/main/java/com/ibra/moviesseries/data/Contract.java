@@ -22,7 +22,7 @@ public class Contract {
     public static final String BASE_URL_IMAGE = "http://image.tmdb.org/t/p/";
 
 
-    public static final String AUTHORITY = "com.examole.android.movieseries";
+    public static final String AUTHORITY = "com.ibra.moviesseries";
     public static final Uri BASE_URI = Uri.parse("content://"+AUTHORITY);
     public static final String PATH = "favourite";
 

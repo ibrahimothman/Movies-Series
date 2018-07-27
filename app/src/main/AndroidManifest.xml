@@ -23,6 +23,9 @@
             android:label="@string/title_activity_series"
             android:theme="@style/AppTheme" />
         <activity android:name=".ui.DetailActivity"></activity>
+        <provider
+            android:authorities="com.ibra.moviesseries"
+            android:name=".data.db.DbContentProvider"/>
     </application>
 
 </manifest>
