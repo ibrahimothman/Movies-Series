@@ -45,6 +45,8 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.FavV
         String showDate = cursor.getString(cursor.getColumnIndex(Contract.FavEntry.RELEASE_DATE_COL));
         String showRate = cursor.getString(cursor.getColumnIndex(Contract.FavEntry.RATE_COL));
         String showPoster = cursor.getString(cursor.getColumnIndex(Contract.FavEntry.POSTER_COL));
+        String showId =  cursor.getString(cursor.getColumnIndex(Contract.FavEntry._ID));
+        holder.itemView.setTag(showId);
 
         holder.title.setText(showTitle);
         holder.date.setText("Released on : "+showDate);

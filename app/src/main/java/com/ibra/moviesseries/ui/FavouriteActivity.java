@@ -1,5 +1,6 @@
 package com.ibra.moviesseries.ui;
 
+import android.content.ContentUris;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,8 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -38,6 +41,7 @@ public class FavouriteActivity extends AppCompatActivity
         LoaderManager.LoaderCallbacks<Cursor>{
 
     private static final int FAV_LOADER = 2;
+    private static final String TAG = FavouriteActivity.class.getSimpleName();
     @BindView(R.id.fav_list)
     RecyclerView mRecyclerView;
     @BindView(R.id.progress_bar_fav)
@@ -74,6 +78,22 @@ public class FavouriteActivity extends AppCompatActivity
         favouriteAdapter = new FavouriteAdapter(this,cursor);
         mRecyclerView.setAdapter(favouriteAdapter);
 
+        // setup recycler swip
+        ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                int id = Integer.parseInt((String) viewHolder.itemView.getTag());
+                getContentResolver().delete(ContentUris.withAppendedId(Contract.FavEntry.CONTENT_URI,id),null,null);
+                Log.d(TAG,"id is "+id);
+            }
+        };
+
+        new ItemTouchHelper(callback).attachToRecyclerView(mRecyclerView);
         getSupportLoaderManager().initLoader(FAV_LOADER,null,this);
 
 
@@ -143,4 +163,6 @@ public class FavouriteActivity extends AppCompatActivity
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
 
     }
+
+
 }
