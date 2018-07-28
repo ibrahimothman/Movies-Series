@@ -62,6 +62,7 @@ public class SeriesActivity extends AppCompatActivity
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),fragments,tabNames,type);
         viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setOffscreenPageLimit(3);
         tabLayout.setupWithViewPager(viewPager);
 
     }

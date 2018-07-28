@@ -65,6 +65,7 @@ public class DetailActivity extends AppCompatActivity {
         // setup viewpager
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),fragments,tabNames,type);
         mViewPager.setAdapter(mViewPagerAdapter);
+        mViewPager.setOffscreenPageLimit(3);
         mTabLayout.setupWithViewPager(mViewPager);
 
 
