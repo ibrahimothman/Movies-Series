@@ -1,6 +1,8 @@
 # Movies-Series
 Android App where you can discover latest movies and TV Series in the world.
 
+You can read more about TMDB API on [TMDB API](https://www.themoviedb.org/documentation/api)  
+
 # Installatin Guide
 
 This app uses TMDB API to retrieve movies and TV Series.
