@@ -47,6 +47,11 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
 
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+
         Intent intent = getIntent();
         String query = intent.getStringExtra(SearchManager.QUERY);
         Log.d(TAG,"query is "+query);
@@ -93,5 +98,11 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
