@@ -22,6 +22,7 @@
             android:name=".ui.SeriesActivity"
             android:label="@string/title_activity_series"
             android:theme="@style/AppTheme" />
+
         <activity android:name=".ui.DetailActivity" />
 
         <provider
@@ -31,7 +32,16 @@
         <activity
             android:name=".ui.FavouriteActivity"
             android:label="@string/title_activity_favourite"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+
+        <activity android:name=".ui.SearchActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/search_config"/>
+        </activity>
+
     </application>
 
 </manifest>
