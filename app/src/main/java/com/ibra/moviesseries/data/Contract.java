@@ -20,7 +20,7 @@ public class Contract {
     public static final String CRIDIT = BASE_URL+"{type}/{id}?api_key="+API_KEY+"&append_to_response=credits,videos,similar";
     public static final String VIDEO = BASE_URL+"{type}/{id}/videos?api_key="+API_KEY;
     public static final String BASE_URL_IMAGE = "http://image.tmdb.org/t/p/";
-
+    public static final String SEARCH = BASE_URL+"search/movie?api_key="+API_KEY;
 
     public static final String AUTHORITY = "com.ibra.moviesseries";
     public static final Uri BASE_URI = Uri.parse("content://"+AUTHORITY);

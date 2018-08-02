@@ -8,6 +8,7 @@ import com.ibra.moviesseries.retrofit.video.VideoList;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
 
@@ -26,6 +27,9 @@ public interface ApiInterface {
 
     @GET(Contract.VIDEO)
     public Call<VideoList> getVideos(@Path("type") String type, @Path("id") int id);
+
+    @GET(Contract.SEARCH)
+    public Call<ShowList> serach(@Query("query") String name);
 
 
 }
