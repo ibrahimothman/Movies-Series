@@ -48,8 +48,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         ButterKnife.bind(this);
 
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
 
         Intent intent = getIntent();
@@ -100,9 +98,5 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         });
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
+   
 }

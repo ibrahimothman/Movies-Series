@@ -130,6 +130,8 @@ public class FavouriteActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
+            Intent searchIntent = new Intent(this,SearchActivity.class);
+            startActivity(searchIntent);
             return true;
         }
 
