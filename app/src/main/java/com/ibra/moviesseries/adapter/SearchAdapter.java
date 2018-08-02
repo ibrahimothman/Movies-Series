@@ -1,6 +1,7 @@
 package com.ibra.moviesseries.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.data.Contract;
 import com.ibra.moviesseries.retrofit.show.Show;
+import com.ibra.moviesseries.ui.DetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -37,12 +39,21 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SeacrhView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SeacrhViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SeacrhViewHolder holder, final int position) {
         holder.title.setText(showList.get(position).getTitle());
         holder.rate.setText(showList.get(position).getMovieVoteAverage()+" / 10");
         holder.date.setText(showList.get(position).getReleaseDate());
         Picasso.with(mContext).load(Contract.BASE_URL_IMAGE+"w185/"+showList.get(position).getMoviePoster())
         .into(holder.poster);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent detailIntent = new Intent(mContext, DetailActivity.class);
+                detailIntent.putExtra("show",showList.get(position));
+                detailIntent.putExtra("type","movie");
+                mContext.startActivity(detailIntent);
+            }
+        });
     }
 
     @Override
