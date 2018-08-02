@@ -8,7 +8,8 @@
     >
 
 
-    <android.support.v7.widget.CardView xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.CardView
+        xmlns:cardview="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cardview_id"
         android:layout_width="110dp"
         android:layout_height="150dp"
@@ -18,6 +19,8 @@
         android:foreground="?android:attr/selectableItemBackground"
         cardview:cardCornerRadius="4dp"
         cardview:layout_constraintStart_toStartOf="parent"
+        cardview:cardUseCompatPadding="true"
+        android:elevation="5dp"
         >
 
         <ImageView

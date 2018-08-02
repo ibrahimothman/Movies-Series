@@ -43,7 +43,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SeacrhView
         holder.title.setText(showList.get(position).getTitle());
         holder.rate.setText(showList.get(position).getMovieVoteAverage()+" / 10");
         holder.date.setText(showList.get(position).getReleaseDate());
-        Picasso.with(mContext).load(Contract.BASE_URL_IMAGE+"w185/"+showList.get(position).getMoviePoster())
+        Picasso.with(mContext).load(Contract.BASE_URL_IMAGE+showList.get(position).getMoviePoster())
         .into(holder.poster);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

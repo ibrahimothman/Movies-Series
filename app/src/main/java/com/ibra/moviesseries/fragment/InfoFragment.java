@@ -85,7 +85,7 @@ public class InfoFragment extends BaseDetailFragment {
         mDurationText.setText(credit.getDuration()+" mins");
         mDateText.setText(show.getReleaseDate()+",");
         mRateText.setText(show.getMovieVoteAverage()+"/10");
-        Picasso.with(getContext()).load(Contract.BASE_URL_IMAGE+"w185/"+show.getMoviePoster())
+        Picasso.with(getContext()).load(Contract.BASE_URL_IMAGE+show.getMoviePoster())
                 .into(mPosterImage);
         mOverviewText.setText(show.getMovieOverview());
     }

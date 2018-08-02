@@ -88,7 +88,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.FavV
             title.setText(showTitle);
             date.setText("Released on : "+showDate);
             rate.setText(showRate+" / 10");
-            Picasso.with(mContext).load(Contract.BASE_URL_IMAGE+"w185/"+showPoster).into(poster);
+            Picasso.with(mContext).load(Contract.BASE_URL_IMAGE+showPoster).into(poster);
         }
 
         @Override

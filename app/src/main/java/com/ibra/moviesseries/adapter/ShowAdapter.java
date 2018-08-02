@@ -25,7 +25,7 @@ public abstract class ShowAdapter extends ListAdapter {
     @Override
     protected void bindViews(ListHolder listHolder, Context mContext, int position) {
         String posterUrl = showList.get(position).getMoviePoster();
-        String posterFullUrl = Contract.BASE_URL_IMAGE+"w185/"+posterUrl;
+        String posterFullUrl = Contract.BASE_URL_IMAGE+posterUrl;
         String title = showList.get(position).getTitle();
 
         // update list ui

@@ -27,7 +27,7 @@ public class CrewAdapter extends ListAdapter {
     @Override
     protected void bindViews(ListHolder listHolder, Context mContext, int position) {
         String posterUrl = crewList.get(position).getProfilePath();
-        String posterFullUrl = Contract.BASE_URL_IMAGE+"w185/"+posterUrl;
+        String posterFullUrl = Contract.BASE_URL_IMAGE+posterUrl;
         String title = crewList.get(position).getName();
 
         // update list ui
