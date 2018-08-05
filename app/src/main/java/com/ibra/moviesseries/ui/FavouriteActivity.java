@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.LoaderManager;
@@ -26,6 +27,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.adapter.FavouriteAdapter;
@@ -40,7 +42,7 @@ import butterknife.ButterKnife;
 
 public class FavouriteActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        LoaderManager.LoaderCallbacks<Cursor>{
+        LoaderManager.LoaderCallbacks<Cursor>,View.OnClickListener{
 
     private static final int FAV_LOADER = 2;
     private static final String TAG = FavouriteActivity.class.getSimpleName();
@@ -48,6 +50,8 @@ public class FavouriteActivity extends AppCompatActivity
     RecyclerView mRecyclerView;
     @BindView(R.id.progress_bar_fav)
     ProgressBar mProgressBar;
+    @BindView(R.id.fav_main_layout)
+    RelativeLayout layout;
 
     RecyclerView.LayoutManager layoutManager;
     FavouriteAdapter favouriteAdapter;
@@ -90,6 +94,7 @@ public class FavouriteActivity extends AppCompatActivity
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                showSnackbar();
                 int id = Integer.parseInt((String) viewHolder.itemView.getTag());
                 getContentResolver().delete(ContentUris.withAppendedId(Contract.FavEntry.CONTENT_URI,id),null,null);
                 Log.d(TAG,"id is "+id);
@@ -102,9 +107,39 @@ public class FavouriteActivity extends AppCompatActivity
 
     }
 
+    private void showSnackbar() {
+        Snackbar snackbar = Snackbar.make(layout,"Are you sure",Snackbar.LENGTH_LONG);
+        snackbar.setAction("UNDO",this);
+        snackbar.addCallback(new Snackbar.Callback() {
 
+            @Override
+            public void onDismissed(Snackbar snackbar, int event) {
+                //see Snackbar.Callback docs for event details
+                if(event == BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_TIMEOUT){
+
+                }else if(event == BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_ACTION){
+
+                }
+
+            }
+
+            @Override
+            public void onShown(Snackbar snackbar) {
+
+            }
+        });
+
+        snackbar.show();
+    }
 
     @Override
+    public void onClick(View view) {
+        // undo deleting fav item
+        
+    }
+
+
+        @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -174,6 +209,7 @@ public class FavouriteActivity extends AppCompatActivity
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
 
     }
+
 
 
 }
