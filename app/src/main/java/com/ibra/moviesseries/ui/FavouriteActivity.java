@@ -42,7 +42,7 @@ import butterknife.ButterKnife;
 
 public class FavouriteActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        LoaderManager.LoaderCallbacks<Cursor>,View.OnClickListener{
+        LoaderManager.LoaderCallbacks<Cursor>{
 
     private static final int FAV_LOADER = 2;
     private static final String TAG = FavouriteActivity.class.getSimpleName();
@@ -55,7 +55,7 @@ public class FavouriteActivity extends AppCompatActivity
 
     RecyclerView.LayoutManager layoutManager;
     FavouriteAdapter favouriteAdapter;
-    Cursor cursor;
+    List<Show> showList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class FavouriteActivity extends AppCompatActivity
         layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
-        favouriteAdapter = new FavouriteAdapter(this,cursor);
+        favouriteAdapter = new FavouriteAdapter(this,showList);
         mRecyclerView.setAdapter(favouriteAdapter);
 
         // setup recycler swip
@@ -94,10 +94,12 @@ public class FavouriteActivity extends AppCompatActivity
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                showSnackbar();
-                int id = Integer.parseInt((String) viewHolder.itemView.getTag());
-                getContentResolver().delete(ContentUris.withAppendedId(Contract.FavEntry.CONTENT_URI,id),null,null);
-                Log.d(TAG,"id is "+id);
+                Show deletedShow = favouriteAdapter.getShow(viewHolder.getAdapterPosition());
+                final int deletedIndex = viewHolder.getAdapterPosition();
+                
+                favouriteAdapter.remove(deletedIndex);
+                showSnackbar(deletedShow,deletedIndex);
+
             }
         };
 
@@ -107,18 +109,29 @@ public class FavouriteActivity extends AppCompatActivity
 
     }
 
-    private void showSnackbar() {
+    private void deleteFromDb() {
+        int id = Integer.parseInt((String) viewHolder.itemView.getTag());
+        getContentResolver().delete(ContentUris.withAppendedId(Contract.FavEntry.CONTENT_URI,id),null,null);
+        Log.d(TAG,"id is "+id);
+    }
+
+    private void showSnackbar(final Show show,final int position) {
         Snackbar snackbar = Snackbar.make(layout,"Are you sure",Snackbar.LENGTH_LONG);
-        snackbar.setAction("UNDO",this);
+        snackbar.setAction("UNDO", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // undo
+                favouriteAdapter.restore(show,position);
+            }
+        });
         snackbar.addCallback(new Snackbar.Callback() {
 
             @Override
             public void onDismissed(Snackbar snackbar, int event) {
                 //see Snackbar.Callback docs for event details
                 if(event == BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_TIMEOUT){
-
-                }else if(event == BaseTransientBottomBar.BaseCallback.DISMISS_EVENT_ACTION){
-
+                    // delete from db
+                    deleteFromDb();
                 }
 
             }
@@ -132,11 +145,7 @@ public class FavouriteActivity extends AppCompatActivity
         snackbar.show();
     }
 
-    @Override
-    public void onClick(View view) {
-        // undo deleting fav item
-        
-    }
+
 
 
         @Override
@@ -201,7 +210,19 @@ public class FavouriteActivity extends AppCompatActivity
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
         if(data != null){
             mProgressBar.setVisibility(View.INVISIBLE);
-            favouriteAdapter.swipCursor(data);
+            data.moveToFirst();
+            do {
+                Show show = new Show();
+                show.setMovieId(data.getInt(data.getColumnIndex(Contract.FavEntry._ID)));
+                show.setMovieOverview(data.getString(data.getColumnIndex(Contract.FavEntry.OVERVIEW_COL)));
+                show.setMoviePoster(data.getString(data.getColumnIndex(Contract.FavEntry.POSTER_COL)));
+                show.setMovieVoteAverage(data.getInt(data.getColumnIndex(Contract.FavEntry.RATE_COL)));
+                show.setTitle(data.getString(data.getColumnIndex(Contract.FavEntry.TITLE_COL)));
+                show.setReleaseDate(data.getString(data.getColumnIndex(Contract.FavEntry.RELEASE_DATE_COL)));
+                showList.add(show);
+            }while (data.moveToNext());
+
+            favouriteAdapter.swipCursor(showList);
         }
     }
 

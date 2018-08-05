@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.data.Contract;
 import com.ibra.moviesseries.retrofit.show.Show;
+import com.ibra.moviesseries.retrofit.show.ShowList;
 import com.ibra.moviesseries.ui.DetailActivity;
 import com.squareup.picasso.Picasso;
 
@@ -25,11 +26,11 @@ import butterknife.ButterKnife;
 public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.FavViewHolder> {
 
     private Context mContext;
-    private Cursor cursor;
+    private List<Show> showList;
 
-    public FavouriteAdapter(Context mContext, Cursor cursor) {
+    public FavouriteAdapter(Context mContext, List<Show> showList) {
         this.mContext = mContext;
-        this.cursor = cursor;
+        this.showList = showList;
     }
 
     @NonNull
@@ -46,15 +47,28 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.FavV
 
     @Override
     public int getItemCount() {
-        if (cursor != null) return cursor.getCount();
+        if (showList != null) return showList.size();
         else return 0;
     }
 
-    public void swipCursor(Cursor cursor) {
-        this.cursor = cursor;
+    public void swipCursor(List<Show> showList) {
+        this.showList = showList;
         this.notifyDataSetChanged();
     }
 
+    public Show getShow(int position){
+        return showList.get(position);
+    }
+
+    public void remove(int position){
+        showList.remove(position);
+        this.notifyItemRemoved(position);
+    }
+
+    public void restore(Show show,int position){
+        showList.add(position,show);
+        this.notifyItemInserted(position);
+    }
 
     class FavViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @BindView(R.id.title_fav)
@@ -76,13 +90,12 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.FavV
 
         public void bind(int position) {
             index = position;
-            cursor.moveToFirst();
-            cursor.moveToPosition(position);
-            String showTitle = cursor.getString(cursor.getColumnIndex(Contract.FavEntry.TITLE_COL));
-            String showDate = cursor.getString(cursor.getColumnIndex(Contract.FavEntry.RELEASE_DATE_COL));
-            String showRate = cursor.getString(cursor.getColumnIndex(Contract.FavEntry.RATE_COL));
-            String showPoster = cursor.getString(cursor.getColumnIndex(Contract.FavEntry.POSTER_COL));
-            String showId =  cursor.getString(cursor.getColumnIndex(Contract.FavEntry._ID));
+            Show show = showList.get(position);
+            String showTitle = show.getTitle();
+            String showDate = show.getReleaseDate();
+            double showRate = show.getMovieVoteAverage();
+            String showPoster = show.getMoviePoster();
+            int showId =  show.getMovieId();
             itemView.setTag(showId);
 
             title.setText(showTitle);
@@ -91,20 +104,12 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.FavV
             Picasso.with(mContext).load(Contract.BASE_URL_IMAGE+showPoster).into(poster);
         }
 
+
+
         @Override
         public void onClick(View view) {
-            Show show = new Show();
-            cursor.moveToPosition(index);
-            show.setMovieId(cursor.getInt(cursor.getColumnIndex(Contract.FavEntry._ID)));
-            show.setMovieOverview(cursor.getString(cursor.getColumnIndex(Contract.FavEntry.OVERVIEW_COL)));
-            show.setMoviePoster(cursor.getString(cursor.getColumnIndex(Contract.FavEntry.POSTER_COL)));
-            show.setMovieVoteAverage(cursor.getInt(cursor.getColumnIndex(Contract.FavEntry.RATE_COL)));
-            show.setTitle(cursor.getString(cursor.getColumnIndex(Contract.FavEntry.TITLE_COL)));
-            show.setReleaseDate(cursor.getString(cursor.getColumnIndex(Contract.FavEntry.RELEASE_DATE_COL)));
-
-
             Intent intent = new Intent(mContext,DetailActivity.class);
-            intent.putExtra("show",show);
+            intent.putExtra("show",showList.get(index));
             intent.putExtra("type","movie");
             mContext.startActivity(intent);
         }
