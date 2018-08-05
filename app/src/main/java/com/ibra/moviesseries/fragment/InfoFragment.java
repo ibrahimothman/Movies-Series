@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,9 +81,9 @@ public class InfoFragment extends BaseDetailFragment {
     protected void updateUi() {
         mTitleText.setText(show.getTitle());
         mGenreText.setText(getGenres());
-        mDurationText.setText(credit.getDuration()+" mins");
-        mDateText.setText(show.getReleaseDate()+",");
-        mRateText.setText(show.getMovieVoteAverage()+"/10");
+        mDurationText.setText(getString(R.string.text,credit.getDuration(),getString(R.string.mins)));
+        mDateText.setText(getString(R.string.text,String.valueOf(show.getReleaseDate()),","));
+        mRateText.setText(getString(R.string.text,String.valueOf(show.getMovieVoteAverage()),getString(R.string.percentage)));
         Picasso.with(getContext()).load(Contract.BASE_URL_IMAGE+show.getMoviePoster())
                 .into(mPosterImage);
         mOverviewText.setText(show.getMovieOverview());

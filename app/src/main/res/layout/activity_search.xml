@@ -34,7 +34,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:imeOptions="actionSearch|flagNoExtractUi"
-                    app:iconifiedByDefault="false" />
+                    app:iconifiedByDefault="false"
+                    app:queryHint="Search in TMDB"/>
 
 
             </android.support.v7.widget.Toolbar>

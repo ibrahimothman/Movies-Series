@@ -93,14 +93,14 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.FavV
             Show show = showList.get(position);
             String showTitle = show.getTitle();
             String showDate = show.getReleaseDate();
-            double showRate = show.getMovieVoteAverage();
+            String showRate = String.valueOf(show.getMovieVoteAverage());
             String showPoster = show.getMoviePoster();
             int showId =  show.getMovieId();
             itemView.setTag(showId);
 
             title.setText(showTitle);
-            date.setText("Released on : "+showDate);
-            rate.setText(showRate+" / 10");
+            date.setText(mContext.getString(R.string.text,mContext.getString(R.string.released_on),showDate));
+            rate.setText(mContext.getString(R.string.text,showRate,R.string.percentage));
             Picasso.with(mContext).load(Contract.BASE_URL_IMAGE+showPoster).into(poster);
         }
 

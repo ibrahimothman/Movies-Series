@@ -25,4 +25,9 @@
     <string name="fav_activity_title">Watchlist</string>
     <string name="my_cart">My Cart</string>
     <string name="delete">DELETE</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="text">%1$s %2$s</string>
+    <string name="percentage">/10</string>
+    <string name="mins">mins</string>
+    <string name="released_on">Released on :</string>
 </resources>

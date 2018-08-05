@@ -41,7 +41,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SeacrhView
     @Override
     public void onBindViewHolder(@NonNull SeacrhViewHolder holder, final int position) {
         holder.title.setText(showList.get(position).getTitle());
-        holder.rate.setText(showList.get(position).getMovieVoteAverage()+" / 10");
+        holder.rate.setText(mContext.getString(R.string.text,String.valueOf(showList.get(position).getMovieVoteAverage()),R.string.percentage));
         holder.date.setText(showList.get(position).getReleaseDate());
         Picasso.with(mContext).load(Contract.BASE_URL_IMAGE+showList.get(position).getMoviePoster())
         .into(holder.poster);
