@@ -31,7 +31,10 @@ You must provide your own API key in Contract Calss to be able to launch the app
 
 <p float="left">
 <img width=400 height=680 src="https://user-images.githubusercontent.com/26088754/43352193-46ac88ce-9220-11e8-8f6e-fc48b920b46a.png"> 
-<img width=400 height=680 src="https://user-images.githubusercontent.com/26088754/43601064-9f09c750-968c-11e8-99da-ad5392600ad8.png"> 
- </p>
+<img width=400 height=680 src="https://user-images.githubusercontent.com/26088754/43601064-9f09c750-968c-11e8-99da-ad5392600ad8.png"> </p>
+<p float="left">
+<img width=400 height=680 src="https://user-images.githubusercontent.com/26088754/43685625-bffecc4a-98b6-11e8-9ba1-880a76310718.png">
+</p>
+
  
  
