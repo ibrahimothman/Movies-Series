@@ -79,23 +79,29 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     private void startLoading(String s) {
         mProgressBar.setVisibility(View.VISIBLE);
-        Call<ShowList> call = ApiClinet.getApiClient().create(ApiInterface.class).serach(s);
-        call.enqueue(new Callback<ShowList>() {
-            @Override
-            public void onResponse(Call<ShowList> call, Response<ShowList> response) {
-                if(response.isSuccessful()){
-                    Log.d(TAG,"response is done");
-                    showList = response.body().getShowList();
-                    searchAdapter.notifiy(showList);
-                    mProgressBar.setVisibility(View.GONE);
+        if(!s.isEmpty()) {
+            Call<ShowList> call = ApiClinet.getApiClient().create(ApiInterface.class).serach(s);
+            call.enqueue(new Callback<ShowList>() {
+                @Override
+                public void onResponse(Call<ShowList> call, Response<ShowList> response) {
+                    if (response.isSuccessful()) {
+                        Log.d(TAG, "response is done");
+                        showList = response.body().getShowList();
+                        searchAdapter.notifiy(showList);
+
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<ShowList> call, Throwable t) {
+                @Override
+                public void onFailure(Call<ShowList> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+        }else{
+            searchAdapter.notifiy(new ArrayList<Show>());
+        }
+
+        mProgressBar.setVisibility(View.GONE);
     }
 
 
