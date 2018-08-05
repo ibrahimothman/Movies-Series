@@ -56,6 +56,7 @@ public class FavouriteActivity extends AppCompatActivity
     RecyclerView.LayoutManager layoutManager;
     FavouriteAdapter favouriteAdapter;
     List<Show> showList = new ArrayList<>();
+    private int itemId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +97,7 @@ public class FavouriteActivity extends AppCompatActivity
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 Show deletedShow = favouriteAdapter.getShow(viewHolder.getAdapterPosition());
                 final int deletedIndex = viewHolder.getAdapterPosition();
-                
+                itemId = (int) viewHolder.itemView.getTag();
                 favouriteAdapter.remove(deletedIndex);
                 showSnackbar(deletedShow,deletedIndex);
 
@@ -110,9 +111,8 @@ public class FavouriteActivity extends AppCompatActivity
     }
 
     private void deleteFromDb() {
-        int id = Integer.parseInt((String) viewHolder.itemView.getTag());
-        getContentResolver().delete(ContentUris.withAppendedId(Contract.FavEntry.CONTENT_URI,id),null,null);
-        Log.d(TAG,"id is "+id);
+        getContentResolver().delete(ContentUris.withAppendedId(Contract.FavEntry.CONTENT_URI,itemId),null,null);
+        Log.d(TAG,"id is "+itemId);
     }
 
     private void showSnackbar(final Show show,final int position) {
@@ -210,6 +210,7 @@ public class FavouriteActivity extends AppCompatActivity
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
         if(data != null){
             mProgressBar.setVisibility(View.INVISIBLE);
+            showList.clear();
             data.moveToFirst();
             do {
                 Show show = new Show();
