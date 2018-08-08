@@ -8,6 +8,9 @@ You can read more about TMDB API on [TMDB API](https://www.themoviedb.org/docume
 * nSearch for Movies and Series.
 * Add them to your Favourites list.
 
+# Project Overview
+This project is part of the Android Developer Nanodegree at Udacity.
+
 # Installatin Guide
 
 This app uses TMDB API to retrieve movies and TV Series.
