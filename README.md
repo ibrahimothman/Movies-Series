@@ -6,7 +6,7 @@ You can read more about TMDB API on [TMDB API](https://www.themoviedb.org/docume
 * Explore all the details from the Popular, Top Rated and Upcoming Movies.
 * Explore all the details from the Popular, Top Rated and On The Air Series.
 * nSearch for Movies and Series.
-* Add them to your Favourites list.
+
 
 # Project Overview
 This project is part of the Android Developer Nanodegree at Udacity.
