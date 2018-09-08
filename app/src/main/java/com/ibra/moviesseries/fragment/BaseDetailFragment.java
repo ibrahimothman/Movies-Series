@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.ibra.moviesseries.data.api.ApiClinet;
 import com.ibra.moviesseries.data.api.ApiInterface;
+import com.ibra.moviesseries.network.NetworkUtils;
 import com.ibra.moviesseries.retrofit.credit.Credit;
 import com.ibra.moviesseries.retrofit.show.Show;
 import com.ibra.moviesseries.ui.DetailActivity;
@@ -34,7 +36,11 @@ public abstract class BaseDetailFragment extends BaseFragment {
             type = ((DetailActivity)getActivity()).type;
         }
 
-        loadData();
+        if(NetworkUtils.connectionIsAvailable(getContext())) {
+            loadData();
+        }else{
+            Toast.makeText(getContext(), "No internet!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void loadData() {
