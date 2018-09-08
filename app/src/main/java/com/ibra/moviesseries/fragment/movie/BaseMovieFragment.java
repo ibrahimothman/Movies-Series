@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 
 import com.ibra.moviesseries.R;
 import com.ibra.moviesseries.adapter.MovieAdapter;
 import com.ibra.moviesseries.fragment.BaseFragment;
+import com.ibra.moviesseries.network.NetworkUtils;
 import com.ibra.moviesseries.retrofit.show.Show;
 import com.ibra.moviesseries.retrofit.show.ShowList;
 
@@ -52,7 +54,11 @@ public abstract class BaseMovieFragment extends BaseFragment {
         list.setAdapter(movieAdapter);
 
 
-        loadData();
+        if(NetworkUtils.connectionIsAvailable(getContext())) {
+            loadData();
+        }else{
+            Toast.makeText(getContext(), "No internet!", Toast.LENGTH_SHORT).show();
+        }
 
 
         return view;
