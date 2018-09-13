@@ -41,7 +41,12 @@ public class VideoFragment extends BaseDetailFragment {
         View view = inflater.inflate(R.layout.list,container,false);
         ButterKnife.bind(this,view);
 
-        loadData();
+        if(NetworkUtils.connectionIsAvailable(getContext())) {
+            loadData();
+        }else{
+            Toast.makeText(getContext(), "No internet!", Toast.LENGTH_SHORT).show();
+        }
+        
         return view;
     }
 
