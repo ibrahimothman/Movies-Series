@@ -50,8 +50,12 @@ public abstract class BaseTvFragment extends BaseFragment {
         list.setHasFixedSize(true);
         list.setAdapter(tvAdapter);
 
-
-        loadData();
+        if(NetworkUtils.connectionIsAvailable(getContext())) {
+            loadData();
+        }else{
+            Toast.makeText(getContext(), "No internet!", Toast.LENGTH_SHORT).show();
+        }
+        
 
 
         return view;
