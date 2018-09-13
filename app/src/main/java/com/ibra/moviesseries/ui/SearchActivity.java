@@ -80,6 +80,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     private void startLoading(String s) {
         mProgressBar.setVisibility(View.VISIBLE);
         if(!s.isEmpty()) {
+            if(NetworkUtils.connectionIsAvailable(this)){
             Call<ShowList> call = ApiClinet.getApiClient().create(ApiInterface.class).serach(s);
             call.enqueue(new Callback<ShowList>() {
                 @Override
@@ -97,6 +98,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
                 }
             });
+        }
         }else{
             searchAdapter.notifiy(new ArrayList<Show>());
         }
